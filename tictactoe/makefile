@@ -4,8 +4,8 @@ else
     RM = rm -f
 endif
 
-ball: main.cpp
-	g++ main.cpp -I../easyx/include -L../easyx/lib64 -leasyx -o ball.exe
+tictactoe: main.cpp
+	g++ main.cpp -I../easyx/include -L../easyx/lib64 -leasyx -o tictactoe.exe
 
 clean:
-	$(RM) ball.exe
+	$(RM) tictactoe.exe

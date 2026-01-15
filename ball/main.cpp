@@ -1,6 +1,4 @@
-#include<graphics.h>
-
-#include <iostream>
+#include <graphics.h>
 
 int main() {
     initgraph(1270, 720);
