@@ -8,8 +8,8 @@
             ],
             "intelliSenseMode": "windows-msvc-x64",
             "compilerPath": "D:\\Scoop\\apps\\gcc\\current\\bin\\gcc.exe",
-            "cStandard": "c17",
-            "cppStandard": "gnu++17"
+            "cStandard": "c23",
+            "cppStandard": "gnu++23"
         }
     ],
     "version": 4

@@ -1,8 +1,6 @@
 #include <graphics.h>
 #include <cstdio>
 
-#include <cstdlib>
-
 char board[3][3] = {
     {'-', '-', '-'},
     {'-', '-', '-'},
