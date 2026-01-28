@@ -12,8 +12,8 @@ public:
     Enemy(Position pos, double speed);
     ~Enemy() = default;
 
-    void Move(int dir_x, int dir_y);
-    void Draw();
+    void Move(int dir_x, int dir_y, double delta);
+    void Draw(double delta);
 
     Position GetPosition() { return position; }
 

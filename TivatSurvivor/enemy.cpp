@@ -10,7 +10,7 @@ Enemy::Enemy(Position pos, double speed) :
     animation.emplace(animation_atlas);
 }
 
-void Enemy::Move(int dir_x, int dir_y) {
+void Enemy::Move(int dir_x, int dir_y, double delta) {
     //调整角色动画方向
     if(dir_x > 0) animation_state = AnimationState::Right;
     else if(dir_x < 0) animation_state = AnimationState::Left;
@@ -18,8 +18,8 @@ void Enemy::Move(int dir_x, int dir_y) {
     //移动
     double len_dir = sqrt(dir_x * dir_x + dir_y * dir_y);
     if (len_dir != 0) {
-        position.x += dir_x / len_dir * speed;
-        position.y += dir_y / len_dir * speed;
+        position.x += dir_x / len_dir * speed * delta;
+        position.y += dir_y / len_dir * speed * delta;
     }
 
     //限制区域
@@ -29,14 +29,14 @@ void Enemy::Move(int dir_x, int dir_y) {
     if (position.y > limit_area.bottom) position.y = limit_area.bottom;
 }
 
-void Enemy::Draw() {
+void Enemy::Draw(double delta) {
     //阴影
     int shadow_x = position.x - SHADOW_WIDTH / 2;
-    int shadow_y = position.y + (FRAME_HEIGHT - SHADOW_HEIGHT) / 2;
+    int shadow_y = position.y + (FRAME_HEIGHT - SHADOW_HEIGHT) / 2 - 15;
     putimage_alpha(shadow_x, shadow_y, &img_shadow);
 
     //角色动画
-    animation->Play(std::round(position.x), std::round(position.y), (size_t)animation_state);
+    animation->Play(std::round(position.x), std::round(position.y), (size_t)animation_state, delta);
 }
 
 void Enemy::Init(RECT limit) {

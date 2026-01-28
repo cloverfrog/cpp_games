@@ -4,7 +4,7 @@ TARGET = TivatSurvivor.exe
 
 CXXFLAGS += -I../easyx/include
 LDFLAGS = -L../easyx/lib64
-LDLIBS = -leasyx -lmsimg32
+LDLIBS = -leasyx -lmsimg32 -lwinmm
 
 all: $(TARGET)
 

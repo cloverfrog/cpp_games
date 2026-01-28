@@ -1,6 +1,8 @@
 #ifndef BULLET_H
 #define BULLET_H
 
+#include "utils.h"
+
 #include <graphics.h>
 
 class Bullet {
@@ -12,7 +14,7 @@ public:
 private:
     const int RADIUS = 10;
 private:
-    POINT position;
+    Position position;
 };
 
 #endif // BULLET_H

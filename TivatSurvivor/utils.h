@@ -1,9 +1,10 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <graphics.h>
 #include <cmath>
 #include <random>
+
+#include <graphics.h>
 
 struct Position {
     double x;

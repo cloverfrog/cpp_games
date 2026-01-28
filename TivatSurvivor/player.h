@@ -12,8 +12,8 @@ public:
     Player(Position pos, double speed);
     ~Player() = default;
 
-    void Move(int dir_x, int dir_y);
-    void Draw();
+    void Move(int dir_x, int dir_y, double delta);
+    void Draw(double delta);
 
     void ResetLimitArea(RECT limit) { 
         limit_area = {

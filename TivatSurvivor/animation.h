@@ -28,12 +28,14 @@ public:
     Animation(std::shared_ptr<Atlas> ats) : atlas(ats) {};
     ~Animation() = default;
 
-    void Play(int x, int y, size_t state);
+    void Play(int x, int y, size_t state, double delta);
 private:
     std::shared_ptr<Atlas> atlas;
 
     size_t current_state = 0;
-    int frame_bias = 0;
+
+    double timer = 0;
+    int idx_frame = 0;
 };
 
 #endif // ANIMATION_H

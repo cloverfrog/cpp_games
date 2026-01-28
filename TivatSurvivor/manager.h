@@ -17,7 +17,7 @@ struct Key {
 
 class Manager {
 public:
-    Manager(RECT area);
+    Manager(RECT area, double interval);
     ~Manager() = default;
 
     void ProcessKey(const Key& key);
@@ -27,13 +27,15 @@ private:
     void GenerateEnemy();
 private:
     static inline constexpr int ENEMY_INTERVAL = 1e3;
-    static inline constexpr int ENEMY_MAX = 20;
+    static inline constexpr int ENEMY_MAX = 30;
 private:
     RECT area;
     std::optional<Player> player;
     std::vector<Enemy> enemies;
 
-    DWORD tick = 0;
+    double frame_interval;
+
+    double enemy_generate_timer = 0;
 };
 
 #endif // MANAGER_H

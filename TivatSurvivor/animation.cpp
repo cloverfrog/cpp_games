@@ -19,20 +19,22 @@ Atlas::Atlas(std::vector<AnimationConfig> cfg):
     }
 }
 
-void Animation::Play(int x, int y, size_t state) {
+void Animation::Play(int x, int y, size_t state, double delta) {
     if (state < 0 || state >= atlas->config.size()) return;
 
     AnimationConfig cfg = atlas->config[state];
 
-    // 获取当前帧
-    int frame = (GetTickCount() / cfg.interval) % cfg.num;
-
-    // 通过增加偏移，使得切换状态时从新状态的第一帧开始
-    if (state != current_state) {
-        frame_bias = cfg.num - frame;
-        current_state = state;
+    timer += delta;
+    if(timer >= static_cast<double>(cfg.interval)) {
+        idx_frame = (idx_frame + 1) % cfg.num;
+        timer -= static_cast<double>(cfg.interval);
     }
-    frame = (frame + frame_bias) % cfg.num;
 
-    putimage_alpha(x - cfg.width / 2, y - cfg.height / 2, atlas->frame_list[state][frame].get());
+    if (state != current_state) {
+        current_state = state;
+        timer = 0;
+        idx_frame = 0;
+    }
+
+    putimage_alpha(x - cfg.width / 2, y - cfg.height / 2, atlas->frame_list[state][idx_frame].get());
 }
