@@ -16,10 +16,14 @@ public:
     void Draw(double delta);
 
     Position GetPosition() { return position; }
+    RectArea GetCollisionBox() { return {position.x - COLLISION_WIDTH / 2, position.y - COLLISION_HEIGHT / 2, position.x + COLLISION_WIDTH / 2, position.y + COLLISION_HEIGHT / 2}; }
 
-    static void Init(RECT limit);
-    static RECT GetLimitArea() { return limit_area; }
+    static void Init(RectArea limit);
+    static RectArea GetLimitArea() { return limit_area; }
     static SIZE GetSize() { return {FRAME_WIDTH, FRAME_HEIGHT}; }
+
+    void Hurt() { health = health > 0 ? health - 1 : 0; }
+    bool Alive() { return health > 0; }
 private:
     static inline constexpr int FRAME_WIDTH = 80;
     static inline constexpr int FRAME_HEIGHT = 80;
@@ -27,6 +31,9 @@ private:
     static inline constexpr int FRAME_INTERVAL = 45;
     static inline constexpr int SHADOW_WIDTH = 48;
     static inline constexpr int SHADOW_HEIGHT = 30;
+
+    static inline constexpr double COLLISION_WIDTH = 50;
+    static inline constexpr double COLLISION_HEIGHT = 40;
 private:
     enum class AnimationState {
         Left=0,
@@ -37,7 +44,9 @@ private:
     std::optional<Animation> animation;
     inline static std::shared_ptr<Atlas> animation_atlas;
     inline static IMAGE img_shadow;
-    inline static RECT limit_area;
+    inline static RectArea limit_area;
+    
+    int health = 1;
 };
 
 #endif // ENEMY_H

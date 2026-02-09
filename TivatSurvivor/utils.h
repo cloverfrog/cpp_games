@@ -16,6 +16,30 @@ struct Position {
     Position(double x_, double y_) : x(x_), y(y_) {}
 };
 
+struct RectArea {
+    double left;
+    double top;
+    double right;
+    double bottom;
+
+    operator RECT() const { return {static_cast<int>(std::round(left)), static_cast<int>(std::round(top)), static_cast<int>(std::round(right)), static_cast<int>(std::round(bottom))}; }
+    RectArea(const RECT& r) : left(static_cast<double>(r.left)), top(static_cast<double>(r.top)), right(static_cast<double>(r.right)), bottom(static_cast<double>(r.bottom)) {}
+    RectArea() = default;
+    RectArea(double left_, double top_, double right_, double bottom_) : left(left_), top(top_), right(right_), bottom(bottom_) {}
+    Position GetCenter() const { return {(left + right) / 2, (top + bottom) / 2}; }
+    bool IsCollision(const Position& p) const { return p.x >= left && p.x <= right && p.y >= top && p.y <= bottom; }
+    bool IsCollision(const RectArea& r) const { return ((left - r.right)*(right - r.left) < 0) && ((top - r.bottom)*(bottom - r.top) < 0); }
+};
+
+struct Vec2 {
+    double x;
+    double y;
+
+    Vec2() = default;
+    Vec2(double x_, double y_) : x(x_), y(y_) {}
+    void Normalize() { double len = sqrt(x * x + y * y); x /= len; y /= len; }
+};
+
 inline void loadimage_safe(IMAGE* pDstImg, LPCTSTR pImgFile, int nWidth = 0, int nHeight = 0, bool bResize = false) {
     int ret = loadimage(pDstImg, pImgFile, nWidth, nHeight, bResize);
     while(ret) {

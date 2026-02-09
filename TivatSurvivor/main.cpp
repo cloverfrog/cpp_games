@@ -22,7 +22,7 @@ int main() {
     IMAGE img_background;
     loadimage_safe(&img_background, _T("img/background.png"));
 
-    Manager manager({0, 0, WIDTH, HEIGHT}, static_cast<double>(FRAME_INTERVAL_US) / 1000.0);
+    Manager manager(RectArea(0, 0, WIDTH, HEIGHT), static_cast<double>(FRAME_INTERVAL_US) / 1000.0);
 
     //键盘标志
     bool hold_key_up = false;
@@ -30,7 +30,7 @@ int main() {
     bool hold_key_left = false;
     bool hold_key_right = false;
     /*==========初始化=========*/
-	
+
 	while (running) {
         auto last_time = std::chrono::steady_clock::now();
 		
@@ -54,7 +54,8 @@ int main() {
 		
         /*==========处理数据=========*/
         manager.ProcessKey({hold_key_left, hold_key_right, hold_key_up, hold_key_down});
-        manager.Update();
+
+        running = manager.Update();
 		/*==========处理数据=========*/
 		
 		cleardevice();
@@ -77,6 +78,7 @@ int main() {
     timeEndPeriod(1);
 	
 	/*==========释放资源=========*/
+    MessageBox(GetHWnd(), _T("怪物吃掉了你的脑子！！！"), _T("Game Over"), MB_OK);
     /*==========释放资源=========*/
 	
 	return 0;

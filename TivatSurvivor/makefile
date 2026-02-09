@@ -8,7 +8,7 @@ LDLIBS = -leasyx -lmsimg32 -lwinmm
 
 all: $(TARGET)
 
-$(TARGET): main.o manager.o player.o enemy.o animation.o utils.o
+$(TARGET): main.o manager.o player.o enemy.o animation.o bullet.o utils.o
 	$(CXX) $(CXXFLAGS) $^ $(LDFLAGS) $(LDLIBS) -o $@
 
 main.o: main.cpp 

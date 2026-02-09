@@ -2,8 +2,10 @@
 #define MANAGER_H
 
 #include "graphics.h"
+#include "utils.h"
 #include "player.h"
 #include "enemy.h"
+#include "bullet.h"
 
 #include <vector>
 #include <optional>
@@ -17,25 +19,34 @@ struct Key {
 
 class Manager {
 public:
-    Manager(RECT area, double interval);
+    Manager(RectArea area, double interval);
     ~Manager() = default;
 
     void ProcessKey(const Key& key);
-    void Update();
+    bool Update();
     void Draw();
 private:
     void GenerateEnemy();
+    void UpdateBullets();
 private:
     static inline constexpr int ENEMY_INTERVAL = 1e3;
     static inline constexpr int ENEMY_MAX = 30;
+
+    static inline constexpr int BULLET_NUM = 3;
+    static inline constexpr double BULLET_RADIAL_SPEED = 0.0045;    //径向波动速度
+    static inline constexpr double BULLET_BASE_RADIUS = 100.0;      //基础半径
+    static inline constexpr double BULLET_AMPLITUDE = 25.0;         //径向波动幅度
+    static inline constexpr double BULLET_TANGENT_SPEED = 0.0055;   //切向波动速度
 private:
-    RECT area;
+    RectArea area;
     std::optional<Player> player;
-    std::vector<Enemy> enemies;
+    std::vector<std::unique_ptr<Enemy>> enemies;
+    std::vector<std::unique_ptr<Bullet>> bullet_list;
 
     double frame_interval;
 
     double enemy_generate_timer = 0;
+    double bullet_update_timer = 0;
 };
 
 #endif // MANAGER_H

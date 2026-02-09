@@ -37,9 +37,12 @@ void Enemy::Draw(double delta) {
 
     //Ω«…´∂Øª≠
     animation->Play(std::round(position.x), std::round(position.y), (size_t)animation_state, delta);
+
+    //≈ˆ◊≤œ‰≤‚ ‘
+    rectangle(position.x - COLLISION_WIDTH / 2, position.y - COLLISION_HEIGHT / 2, position.x + COLLISION_WIDTH / 2, position.y + COLLISION_HEIGHT / 2);
 }
 
-void Enemy::Init(RECT limit) {
+void Enemy::Init(RectArea limit) {
     limit_area = {
         limit.left - FRAME_WIDTH / 2,
         limit.top - FRAME_HEIGHT / 2,

@@ -11,8 +11,11 @@ public:
     ~Bullet() = default;
 
     void Draw() const;
+
+    Position GetPosition() const { return position; }
+    void SetPosition(Position pos) { position = pos; }
 private:
-    const int RADIUS = 10;
+    static inline constexpr int RADIUS = 10;
 private:
     Position position;
 };
