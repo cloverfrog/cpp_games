@@ -16,9 +16,12 @@ int main() {
 
     timeBeginPeriod(1);
 	
-	bool running = true;
-	
     /*==========初始化=========*/
+    mciSendString(_T("open mus/bgm.mp3 alias bgm"), NULL, 0, NULL);
+    mciSendString(_T("open mus/hit.wav alias hit"), NULL, 0, NULL);
+
+    mciSendString(_T("play bgm repeat from 0"), NULL, 0, NULL);
+
     IMAGE img_background;
     loadimage_safe(&img_background, _T("img/background.png"));
 
@@ -31,7 +34,7 @@ int main() {
     bool hold_key_right = false;
     /*==========初始化=========*/
 
-	while (running) {
+	while (manager.Running()) {
         auto last_time = std::chrono::steady_clock::now();
 		
 		ExMessage msg;
@@ -55,7 +58,7 @@ int main() {
         /*==========处理数据=========*/
         manager.ProcessKey({hold_key_left, hold_key_right, hold_key_up, hold_key_down});
 
-        running = manager.Update();
+        manager.Update();
 		/*==========处理数据=========*/
 		
 		cleardevice();
@@ -78,7 +81,8 @@ int main() {
     timeEndPeriod(1);
 	
 	/*==========释放资源=========*/
-    MessageBox(GetHWnd(), _T("怪物吃掉了你的脑子！！！"), _T("Game Over"), MB_OK);
+    std::string over_str = "最终得分:" + std::to_string(manager.GetScore());
+    MessageBox(GetHWnd(), over_str.c_str(), _T("Game Over"), MB_OK);
     /*==========释放资源=========*/
 	
 	return 0;

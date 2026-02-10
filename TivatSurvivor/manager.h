@@ -23,8 +23,11 @@ public:
     ~Manager() = default;
 
     void ProcessKey(const Key& key);
-    bool Update();
+    void Update();
     void Draw();
+
+    bool Running() { return player->Alive(); }
+    int GetScore() { return score; }
 private:
     void GenerateEnemy();
     void UpdateBullets();
@@ -47,6 +50,8 @@ private:
 
     double enemy_generate_timer = 0;
     double bullet_update_timer = 0;
+
+    int score = 0;
 };
 
 #endif // MANAGER_H

@@ -22,7 +22,7 @@ void Manager::ProcessKey(const Key& key) {
     player->Move(dir_x, dir_y, frame_interval);
 }
 
-bool Manager::Update() {
+void Manager::Update() {
     GenerateEnemy();
     Position player_pos = player->GetPosition();
 
@@ -35,6 +35,7 @@ bool Manager::Update() {
 
         for(auto& bullet : bullet_list) {
             if (enemy->GetCollisionBox().IsCollision(bullet->GetPosition())) {
+                mciSendString(_T("play hit from 0"), NULL, 0, NULL);
                 enemy->Hurt();
                 break;
             }
@@ -46,6 +47,7 @@ bool Manager::Update() {
         if(!enemies[i]->Alive()) {
             std::swap(enemies[i], enemies.back());
             enemies.pop_back();
+            score++;
         }
         else i++;
     }
@@ -54,8 +56,6 @@ bool Manager::Update() {
     for(auto& enemy : enemies) {
         if (enemy->GetCollisionBox().IsCollision(player->GetCollisionBox())) player->Hurt();
     }
-
-    return player->Alive();
 }
 
 void Manager::Draw() {
@@ -64,6 +64,11 @@ void Manager::Draw() {
         bullet->Draw();
     }
     for(auto& enemy : enemies) enemy->Draw(frame_interval);
+
+    std::string score_str = "当前玩家得分:" + std::to_string(score);
+    setbkmode(TRANSPARENT);
+    settextcolor(RGB(255, 85, 185));
+    outtextxy(10, 10, score_str.c_str());
 }
 
 void Manager::GenerateEnemy() {
