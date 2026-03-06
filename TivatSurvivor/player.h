@@ -12,7 +12,7 @@ public:
     Player(Position pos, double speed);
     ~Player() = default;
 
-    void Move(int dir_x, int dir_y, double delta);
+    void Move(Vec2 dir, double delta);
     void Draw(double delta);
 
     void ResetLimitArea(RectArea limit) { 

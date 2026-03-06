@@ -26,12 +26,6 @@ int main() {
     loadimage_safe(&img_background, _T("img/background.png"));
 
     Manager manager(RectArea(0, 0, WIDTH, HEIGHT), static_cast<double>(FRAME_INTERVAL_US) / 1000.0);
-
-    //键盘标志
-    bool hold_key_up = false;
-    bool hold_key_down = false;
-    bool hold_key_left = false;
-    bool hold_key_right = false;
     /*==========初始化=========*/
 
 	while (manager.Running()) {
@@ -40,24 +34,11 @@ int main() {
 		ExMessage msg;
 		while (peekmessage(&msg)) {
             /*==========读取操作=========*/
-            if(msg.message == WM_KEYDOWN || msg.message == WM_KEYUP) {
-                if(msg.vkcode == VK_LEFT) hold_key_left = msg.message == WM_KEYDOWN;
-                if(msg.vkcode == VK_RIGHT) hold_key_right = msg.message == WM_KEYDOWN;
-                if(msg.vkcode == VK_UP) hold_key_up = msg.message == WM_KEYDOWN;
-                if(msg.vkcode == VK_DOWN) hold_key_down = msg.message == WM_KEYDOWN;
-            }
-            else if(msg.message == WM_ACTIVATE) {
-                hold_key_left = false;
-                hold_key_right = false;
-                hold_key_up = false;
-                hold_key_down = false;
-            }
+            manager.ProcessEvent(msg);
 			/*==========读取操作=========*/
 		}
 		
         /*==========处理数据=========*/
-        manager.ProcessKey({hold_key_left, hold_key_right, hold_key_up, hold_key_down});
-
         manager.Update();
 		/*==========处理数据=========*/
 		

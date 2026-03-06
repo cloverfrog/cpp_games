@@ -6,6 +6,26 @@
 
 #include <graphics.h>
 
+struct Vec2;
+struct Position;
+struct RectArea;
+
+struct Vec2 {
+    double x;
+    double y;
+
+    Vec2() = default;
+    Vec2(double x_, double y_) : x(x_), y(y_) {}
+    Vec2 operator+(const Vec2& v) const { return {x + v.x, y + v.y}; }
+    Vec2 operator-(const Vec2& v) const { return {x - v.x, y - v.y}; }
+    Vec2 operator*(double k) const { return {x * k, y * k}; }
+    void Normalize() {
+        double len = sqrt(x * x + y * y);
+        if(len == 0) return;
+        x /= len; y /= len;
+    }
+};
+
 struct Position {
     double x;
     double y;
@@ -14,6 +34,11 @@ struct Position {
     Position(const POINT& p) : x(static_cast<double>(p.x)), y(static_cast<double>(p.y)) {}
     Position() = default;
     Position(double x_, double y_) : x(x_), y(y_) {}
+    Position operator+(const Vec2& v) const;
+    Position operator+=(const Vec2& v);
+    Position operator-(const Vec2& v) const;
+    Position operator-=(const Vec2& v);
+    void Restrict(const RectArea& r);
 };
 
 struct RectArea {
@@ -27,19 +52,11 @@ struct RectArea {
     RectArea() = default;
     RectArea(double left_, double top_, double right_, double bottom_) : left(left_), top(top_), right(right_), bottom(bottom_) {}
     Position GetCenter() const { return {(left + right) / 2, (top + bottom) / 2}; }
-    bool IsCollision(const Position& p) const { return p.x >= left && p.x <= right && p.y >= top && p.y <= bottom; }
-    bool IsCollision(const RectArea& r) const { return ((left - r.right)*(right - r.left) < 0) && ((top - r.bottom)*(bottom - r.top) < 0); }
+    bool IsCollision(const Position& p) const;
+    bool IsCollision(const RectArea& r) const;
 };
 
-struct Vec2 {
-    double x;
-    double y;
-
-    Vec2() = default;
-    Vec2(double x_, double y_) : x(x_), y(y_) {}
-    void Normalize() { double len = sqrt(x * x + y * y); x /= len; y /= len; }
-};
-
+//ÆäËü
 inline void loadimage_safe(IMAGE* pDstImg, LPCTSTR pImgFile, int nWidth = 0, int nHeight = 0, bool bResize = false) {
     int ret = loadimage(pDstImg, pImgFile, nWidth, nHeight, bResize);
     while(ret) {

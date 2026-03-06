@@ -10,19 +10,12 @@
 #include <vector>
 #include <optional>
 
-struct Key {
-    bool left;
-    bool right;
-    bool up;
-    bool down;
-};
-
 class Manager {
 public:
     Manager(RectArea area, double interval);
     ~Manager() = default;
 
-    void ProcessKey(const Key& key);
+    void ProcessEvent(const ExMessage& msg);
     void Update();
     void Draw();
 
@@ -45,6 +38,16 @@ private:
     std::optional<Player> player;
     std::vector<std::unique_ptr<Enemy>> enemies;
     std::vector<std::unique_ptr<Bullet>> bullet_list;
+
+    struct Key {
+        bool left;
+        bool right;
+        bool up;
+        bool down;
+
+        Key() : left(false), right(false), up(false), down(false) {}
+        void Reset() { left = right = up = down = false; }
+    } key;
 
     double frame_interval;
 

@@ -10,23 +10,17 @@ Enemy::Enemy(Position pos, double speed) :
     animation.emplace(animation_atlas);
 }
 
-void Enemy::Move(int dir_x, int dir_y, double delta) {
+void Enemy::Move(Vec2 dir, double delta) {
     //调整角色动画方向
-    if(dir_x > 0) animation_state = AnimationState::Right;
-    else if(dir_x < 0) animation_state = AnimationState::Left;
+    if(dir.x > 0) animation_state = AnimationState::Right;
+    else if(dir.x < 0) animation_state = AnimationState::Left;
 
     //移动
-    double len_dir = sqrt(dir_x * dir_x + dir_y * dir_y);
-    if (len_dir != 0) {
-        position.x += dir_x / len_dir * speed * delta;
-        position.y += dir_y / len_dir * speed * delta;
-    }
+    dir.Normalize();
+    position += dir * speed * delta;
 
     //限制区域
-    if (position.x < limit_area.left) position.x = limit_area.left;
-    if (position.x > limit_area.right) position.x = limit_area.right;
-    if (position.y < limit_area.top) position.y = limit_area.top;
-    if (position.y > limit_area.bottom) position.y = limit_area.bottom;
+    position.Restrict(limit_area);
 }
 
 void Enemy::Draw(double delta) {

@@ -15,15 +15,24 @@ Manager::Manager(RectArea a, double interval) :
     for(int i = 0; i < BULLET_NUM; ++i) bullet_list.emplace_back(std::make_unique<Bullet>());
 }
 
-void Manager::ProcessKey(const Key& key) {
-    int dir_x = key.right - key.left;
-    int dir_y = key.down - key.up;
-    
-    player->Move(dir_x, dir_y, frame_interval);
+void Manager::ProcessEvent(const ExMessage& msg) {
+    if(msg.message == WM_KEYDOWN || msg.message == WM_KEYUP) {
+        if(msg.vkcode == VK_LEFT) key.left = msg.message == WM_KEYDOWN;
+        if(msg.vkcode == VK_RIGHT) key.right = msg.message == WM_KEYDOWN;
+        if(msg.vkcode == VK_UP) key.up = msg.message == WM_KEYDOWN;
+        if(msg.vkcode == VK_DOWN) key.down = msg.message == WM_KEYDOWN;
+    }
+    else if(msg.message == WM_ACTIVATE) {
+        key.Reset();
+    }
 }
 
 void Manager::Update() {
     GenerateEnemy();
+
+    double dir_x = (double)(key.right - key.left);
+    double dir_y = (double)(key.down - key.up);
+    player->Move((Vec2){dir_x, dir_y}, frame_interval);
     Position player_pos = player->GetPosition();
 
     UpdateBullets();
@@ -31,7 +40,7 @@ void Manager::Update() {
     //敌人移动以及与子弹的碰撞
     for(auto& enemy : enemies) {
         Position enemy_pos = enemy->GetPosition();
-        enemy->Move(player_pos.x - enemy_pos.x, player_pos.y - enemy_pos.y, frame_interval);
+        enemy->Move((Vec2){player_pos.x - enemy_pos.x, player_pos.y - enemy_pos.y}, frame_interval);
 
         for(auto& bullet : bullet_list) {
             if (enemy->GetCollisionBox().IsCollision(bullet->GetPosition())) {

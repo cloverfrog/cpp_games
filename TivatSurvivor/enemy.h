@@ -12,7 +12,7 @@ public:
     Enemy(Position pos, double speed);
     ~Enemy() = default;
 
-    void Move(int dir_x, int dir_y, double delta);
+    void Move(Vec2 dir, double delta);
     void Draw(double delta);
 
     Position GetPosition() { return position; }
