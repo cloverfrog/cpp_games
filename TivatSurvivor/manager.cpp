@@ -7,12 +7,20 @@ Manager::Manager(RectArea a, double interval) :
     area(a),
     frame_interval(interval)
 {
+    mciSendString(_T("play bgm repeat from 0"), NULL, 0, NULL);
+
+    loadimage_safe(&img_background, _T("img/background.png"));
+
     Player::Init(area);
     Enemy::Init(area);
 
     player.emplace(area.GetCenter(), 0.3);
 
     for(int i = 0; i < BULLET_NUM; ++i) bullet_list.emplace_back(std::make_unique<Bullet>());
+}
+
+Manager::~Manager() {
+    mciSendString(_T("stop bgm"), NULL, 0, NULL);
 }
 
 void Manager::ProcessEvent(const ExMessage& msg) {
@@ -68,6 +76,8 @@ void Manager::Update() {
 }
 
 void Manager::Draw() {
+    putimage(0, 0, &img_background);
+
     player->Draw(frame_interval);
     for(auto& bullet : bullet_list) {
         bullet->Draw();

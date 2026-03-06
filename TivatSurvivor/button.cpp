@@ -3,9 +3,9 @@
 Button::Button(RECT rect, std::string path_img_idle, std::string path_img_hovered, std::string path_img_pushed, std::function<void()> callback):
     region(rect), on_click(callback) 
 {
-    loadimage(&img_idle, path_img_idle.c_str());
-    loadimage(&img_hovered, path_img_hovered.c_str());
-    loadimage(&img_pushed, path_img_pushed.c_str());
+    loadimage_safe(&img_idle, path_img_idle.c_str());
+    loadimage_safe(&img_hovered, path_img_hovered.c_str());
+    loadimage_safe(&img_pushed, path_img_pushed.c_str());
 }
 
 void Button::Draw() const {

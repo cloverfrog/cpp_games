@@ -1,7 +1,9 @@
 #include "utils.h"
 #include "manager.h"
+#include "ui.h"
 
 #include <chrono>
+#include <optional>
 
 #include <graphics.h>
 
@@ -20,35 +22,46 @@ int main() {
     mciSendString(_T("open mus/bgm.mp3 alias bgm"), NULL, 0, NULL);
     mciSendString(_T("open mus/hit.wav alias hit"), NULL, 0, NULL);
 
-    mciSendString(_T("play bgm repeat from 0"), NULL, 0, NULL);
+    std::optional<Manager> manager;
+    UI ui;
 
-    IMAGE img_background;
-    loadimage_safe(&img_background, _T("img/background.png"));
-
-    Manager manager(RectArea(0, 0, WIDTH, HEIGHT), static_cast<double>(FRAME_INTERVAL_US) / 1000.0);
+    bool running = true;
     /*==========初始化=========*/
 
-	while (manager.Running()) {
+	while (running) {
         auto last_time = std::chrono::steady_clock::now();
 		
 		ExMessage msg;
 		while (peekmessage(&msg)) {
             /*==========读取操作=========*/
-            manager.ProcessEvent(msg);
+            if(manager) manager->ProcessEvent(msg);
+            else ui.ProcessEvent(msg);
 			/*==========读取操作=========*/
 		}
 		
         /*==========处理数据=========*/
-        manager.Update();
+        if(manager) manager->Update();
+        else ui.Update();
 		/*==========处理数据=========*/
 		
 		cleardevice();
         /*==========绘制画面=========*/
-        putimage(0, 0, &img_background);
-
-        manager.Draw();
+        if(manager) manager->Draw();
+        else ui.Draw();
         /*==========绘制画面=========*/
 		FlushBatchDraw();
+
+        /*==========状态切换=========*/
+        if(manager && !manager->Running()) {
+            std::string over_str = "最终得分:" + std::to_string(manager->GetScore());
+            MessageBox(GetHWnd(), over_str.c_str(), _T("Game Over"), MB_OK);
+            manager.reset();
+        }
+        else {
+            if(ui.Start()) manager.emplace(RectArea(0, 0, WIDTH, HEIGHT), static_cast<double>(FRAME_INTERVAL_US) / 1000.0);
+            else if(ui.Quit()) running = false;
+        }
+        /*==========状态切换=========*/
 
         auto target_time = last_time + std::chrono::microseconds(FRAME_INTERVAL_US);
         auto now_time = std::chrono::steady_clock::now();
@@ -62,8 +75,7 @@ int main() {
     timeEndPeriod(1);
 	
 	/*==========释放资源=========*/
-    std::string over_str = "最终得分:" + std::to_string(manager.GetScore());
-    MessageBox(GetHWnd(), over_str.c_str(), _T("Game Over"), MB_OK);
+    
     /*==========释放资源=========*/
 	
 	return 0;

@@ -13,7 +13,7 @@
 class Manager {
 public:
     Manager(RectArea area, double interval);
-    ~Manager() = default;
+    ~Manager();
 
     void ProcessEvent(const ExMessage& msg);
     void Update();
@@ -34,6 +34,8 @@ private:
     static inline constexpr double BULLET_AMPLITUDE = 25.0;         //径向波动幅度
     static inline constexpr double BULLET_TANGENT_SPEED = 0.0055;   //切向波动速度
 private:
+    IMAGE img_background;
+
     RectArea area;
     std::optional<Player> player;
     std::vector<std::unique_ptr<Enemy>> enemies;
