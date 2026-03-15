@@ -2,9 +2,8 @@
 #include "manager.h"
 #include "ui.h"
 
-#include <chrono>
 #include <optional>
-
+#include <chrono>
 #include <graphics.h>
 
 constexpr int WIDTH = 1280;
@@ -17,6 +16,8 @@ int main() {
     BeginBatchDraw();
 
     timeBeginPeriod(1);
+
+    bool running = true;
 	
     /*==========初始化=========*/
     mciSendString(_T("open mus/bgm.mp3 alias bgm"), NULL, 0, NULL);
@@ -24,8 +25,6 @@ int main() {
 
     std::optional<Manager> manager;
     UI ui;
-
-    bool running = true;
     /*==========初始化=========*/
 
 	while (running) {
