@@ -15,18 +15,18 @@ public:
     SceneManager();
     ~SceneManager() = default;
 
-    void onEvent(const ExMessage& msg) { current_scene->on_event(msg); }
-    void onUpdate() { current_scene->on_update(); }
-    void onDraw() { current_scene->on_draw(); }
+    void OnEvent(const ExMessage& msg) { current_scene_->OnEvent(msg); }
+    void OnUpdate() { current_scene_->OnUpdate(); }
+    void OnDraw() { current_scene_->OnDraw(); }
 
-    void notify(int code) override { changeScene((SceneType)code); }
+    void Notify(int code) override { ChangeScene((SceneType)code); }
 private:
-    void changeScene(SceneType type);
+    void ChangeScene(SceneType type);
 private:
-    std::shared_ptr<Scene> current_scene = nullptr;
-    std::shared_ptr<MenuScene> menu_scene;
-    std::shared_ptr<GameScene> game_scene;
-    std::shared_ptr<SelectorScene> selector_scene;
+    std::shared_ptr<Scene> current_scene_ = nullptr;
+    std::shared_ptr<MenuScene> menu_scene_;
+    std::shared_ptr<GameScene> game_scene_;
+    std::shared_ptr<SelectorScene> selector_scene_;
 };
 
 #endif // SCENE_MANAGER_H

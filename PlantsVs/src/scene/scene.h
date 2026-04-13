@@ -10,15 +10,15 @@ public:
     Scene() = default;
     ~Scene() = default;
 
-    void setObserver(IObserver* observer) { this->observer = observer; }
+    void SetObserver(IObserver* observer) { observer_ = observer; }
 
-    virtual void on_enter() {}
-    virtual void on_update() {}
-    virtual void on_draw() {}
-    virtual void on_event(const ExMessage& msg) {}
-    virtual void on_exit() {}
+    virtual void OnEnter() {}
+    virtual void OnUpdate() {}
+    virtual void OnDraw() {}
+    virtual void OnEvent(const ExMessage& msg) {}
+    virtual void OnExit() {}
 protected:
-    IObserver* observer = nullptr;
+    IObserver* observer_ = nullptr;
 };
 
 #endif // SCENE_H

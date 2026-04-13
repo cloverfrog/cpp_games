@@ -4,7 +4,7 @@
 class IObserver {
 public:
     virtual ~IObserver() = default;
-    virtual void notify(int code) = 0;
+    virtual void Notify(int code) = 0;
 };
 
 #endif // I_OBSERVER_H

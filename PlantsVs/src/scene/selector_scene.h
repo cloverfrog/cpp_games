@@ -9,11 +9,11 @@ public:
     SelectorScene() = default;
     ~SelectorScene() = default;
 
-    void on_enter() override;
-    void on_update() override;
-    void on_draw() override;
-    void on_event(const ExMessage& msg) override;
-    void on_exit() override;
+    void OnEnter() override;
+    void OnUpdate() override;
+    void OnDraw() override;
+    void OnEvent(const ExMessage& msg) override;
+    void OnExit() override;
 };
 
 #endif // SELECTOR_SCENE_H

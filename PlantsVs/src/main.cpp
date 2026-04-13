@@ -3,13 +3,13 @@
 
 #include "scene_manager.h"
 
-constexpr int WIDTH = 1280;
-constexpr int HEIGHT = 720;
-constexpr int FPS = 60;
-constexpr int FRAME_INTERVAL_US = 1000'000.0 / FPS;
+constexpr int kWidth = 1280;
+constexpr int kHeight = 720;
+constexpr int kFps = 60;
+constexpr int kFrameIntervalUs = 1000'000.0 / kFps;
 
 int main() {
-	initgraph(WIDTH, HEIGHT);
+	initgraph(kWidth, kHeight);
     BeginBatchDraw();
 
     timeBeginPeriod(1);
@@ -26,24 +26,24 @@ int main() {
 		ExMessage msg;
 		while (peekmessage(&msg)) {
             /*==========读取操作=========*/
-            scene_manager.onEvent(msg);
+            scene_manager.OnEvent(msg);
 			/*==========读取操作=========*/
 		}
 		
         /*==========处理数据=========*/
-        scene_manager.onUpdate();
+        scene_manager.OnUpdate();
 		/*==========处理数据=========*/
 		
 		cleardevice();
         /*==========绘制画面=========*/
-        scene_manager.onDraw();
+        scene_manager.OnDraw();
         /*==========绘制画面=========*/
 		FlushBatchDraw();
 
         /*==========状态切换=========*/
         /*==========状态切换=========*/
 
-        auto target_time = last_time + std::chrono::microseconds(FRAME_INTERVAL_US);
+        auto target_time = last_time + std::chrono::microseconds(kFrameIntervalUs);
         auto now_time = std::chrono::steady_clock::now();
         if(target_time > now_time)
             Sleep(static_cast<DWORD>(std::chrono::duration_cast<std::chrono::milliseconds>(target_time - now_time).count()));

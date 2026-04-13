@@ -2,24 +2,24 @@
 
 #include<iostream>
 
-void GameScene::on_enter() {
+void GameScene::OnEnter() {
     std::cout << "进入游戏" << std::endl;
 }
 
-void GameScene::on_update() {
+void GameScene::OnUpdate() {
     std::cout << "游戏运行中……" << std::endl;
 }
 
-void GameScene::on_draw() {
+void GameScene::OnDraw() {
     outtextxy(100, 100, _T("游戏"));
 }
 
-void GameScene::on_event(const ExMessage& msg) {
+void GameScene::OnEvent(const ExMessage& msg) {
     if(msg.message == WM_KEYDOWN) {
-        if(observer) observer->notify((int)SceneType::Menu);
+        if(observer_) observer_->Notify((int)SceneType::Menu);
     }
 }
 
-void GameScene::on_exit() {
+void GameScene::OnExit() {
     std::cout << "退出游戏" << std::endl;
 }

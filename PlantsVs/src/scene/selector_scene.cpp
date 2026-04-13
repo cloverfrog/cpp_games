@@ -2,24 +2,24 @@
 
 #include <iostream>
 
-void SelectorScene::on_enter() {
+void SelectorScene::OnEnter() {
     std::cout << "进入选择界面" << std::endl;
 }
 
-void SelectorScene::on_update() {
+void SelectorScene::OnUpdate() {
     std::cout << "选择界面运行中……" << std::endl;
 }
 
-void SelectorScene::on_draw() {
+void SelectorScene::OnDraw() {
     outtextxy(100, 100, _T("选择界面"));
 }
 
-void SelectorScene::on_event(const ExMessage& msg) {
+void SelectorScene::OnEvent(const ExMessage& msg) {
     if(msg.message == WM_KEYDOWN) {
-        if(observer) observer->notify((int)SceneType::Game);
+        if(observer_) observer_->Notify((int)SceneType::Game);
     }
 }
 
-void SelectorScene::on_exit() {
+void SelectorScene::OnExit() {
     std::cout << "退出选择界面" << std::endl;
 }
