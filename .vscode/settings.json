@@ -2,5 +2,6 @@
     "files.encoding": "gbk",
     "[cpp]": {
         "files.encoding": "gbk"
-    }
+    },
+    "cmake.sourceDirectory": "C:/MySpace/cpp_games/PlantsVs"
 }

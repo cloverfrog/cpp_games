@@ -5,12 +5,15 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "easyx/include"
-            ],
-            "intelliSenseMode": "windows-msvc-x64",
-            "compilerPath": "D:\\Scoop\\apps\\gcc\\current\\bin\\gcc.exe",
-            "cStandard": "c23",
-            "cppStandard": "gnu++23"
-        }
+            ]
+        },
+        {
+            "name": "PlantsVs",
+            "includePath": [
+                "PlantsVs/src",
+                "PlantsVs/third_party/**"
+            ]
+        },
     ],
     "version": 4
 }

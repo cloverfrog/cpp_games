@@ -14,11 +14,14 @@ include_directories(src)
 
 add_executable(PlantsVs
     src/main.cpp
-    src/test1/test1.cpp
-    src/test2/test2.cpp
+    src/scene/menu_scene.cpp
+    src/scene/game_scene.cpp
+    src/scene/selector_scene.cpp
+    src/scene_manager.cpp
 )
 
 target_link_libraries(PlantsVs 
     PRIVATE 
         easyx
+        winmm
 )
