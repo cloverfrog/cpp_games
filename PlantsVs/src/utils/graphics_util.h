@@ -33,4 +33,20 @@ inline void putimage_alpha(int x, int y, IMAGE* img) {
         GetImageHDC(img), 0, 0, w, h, { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA });
 }
 
+//Í¼Ïñ·­×ª
+inline void flipimage(IMAGE* src, IMAGE* dst) {
+    int w = src->getwidth();
+    int h = src->getheight();
+    Resize(dst, w, h);
+    DWORD* src_buffer = GetImageBuffer(src);
+    DWORD* dst_buffer = GetImageBuffer(dst);
+    for (int y = 0; y < h; y++) {
+        for (int x = 0; x < w; x++) {
+            int idx_src = y * w + x;
+            int idx_dst = y * w + (w - x - 1);
+            dst_buffer[idx_dst] = src_buffer[idx_src];
+        }
+    }
+}
+
 #endif // GRAPHICS_UTIL_H

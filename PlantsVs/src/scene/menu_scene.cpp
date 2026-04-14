@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "scene/scene_type.h"
+
 void MenuScene::OnEnter() {
     std::cout << "进入主菜单" << std::endl;
 }

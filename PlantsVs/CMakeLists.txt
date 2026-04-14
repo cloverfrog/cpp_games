@@ -18,6 +18,7 @@ add_executable(PlantsVs
     src/scene/game_scene.cpp
     src/scene/selector_scene.cpp
     src/scene_manager.cpp
+    src/atlas.cpp
 )
 
 target_link_libraries(PlantsVs 

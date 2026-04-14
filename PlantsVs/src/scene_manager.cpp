@@ -1,9 +1,9 @@
 #include "scene_manager.h"
 
 SceneManager::SceneManager() {
-    menu_scene_ = std::make_shared<MenuScene>();
-    game_scene_ = std::make_shared<GameScene>();
-    selector_scene_ = std::make_shared<SelectorScene>();
+    menu_scene_ = std::make_unique<MenuScene>();
+    game_scene_ = std::make_unique<GameScene>();
+    selector_scene_ = std::make_unique<SelectorScene>();
 
     menu_scene_->SetObserver(this);
     game_scene_->SetObserver(this);
@@ -18,13 +18,13 @@ void SceneManager::ChangeScene(SceneType type) {
     }
     switch (type) {
     case SceneType::Menu:
-        current_scene_ = menu_scene_;
+        current_scene_ = menu_scene_.get();
         break;
     case SceneType::Game:
-        current_scene_ = game_scene_;
+        current_scene_ = game_scene_.get();
         break;
     case SceneType::Selector:
-        current_scene_ = selector_scene_;
+        current_scene_ = selector_scene_.get();
         break;
     default:
         break;

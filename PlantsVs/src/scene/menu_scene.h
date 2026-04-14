@@ -2,7 +2,6 @@
 #define MENU_SCENE_H
 
 #include "scene/scene.h"
-#include "scene/scene_type.h"
 
 class MenuScene : public Scene {
 public:

@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "scene/scene_type.h"
+
 void SelectorScene::OnEnter() {
     std::cout << "进入选择界面" << std::endl;
 }

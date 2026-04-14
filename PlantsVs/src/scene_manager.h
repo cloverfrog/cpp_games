@@ -23,10 +23,10 @@ public:
 private:
     void ChangeScene(SceneType type);
 private:
-    std::shared_ptr<Scene> current_scene_ = nullptr;
-    std::shared_ptr<MenuScene> menu_scene_;
-    std::shared_ptr<GameScene> game_scene_;
-    std::shared_ptr<SelectorScene> selector_scene_;
+    Scene* current_scene_ = nullptr;
+    std::unique_ptr<MenuScene> menu_scene_;
+    std::unique_ptr<GameScene> game_scene_;
+    std::unique_ptr<SelectorScene> selector_scene_;
 };
 
 #endif // SCENE_MANAGER_H

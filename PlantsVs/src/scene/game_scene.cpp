@@ -2,6 +2,8 @@
 
 #include<iostream>
 
+#include "scene/scene_type.h"
+
 void GameScene::OnEnter() {
     std::cout << "½øÈëÓÎÏ·" << std::endl;
 }

@@ -1,9 +1,9 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-#include "base/i_observer.h"
-
 #include <graphics.h>
+
+#include "base/i_observer.h"
 
 class Scene {
 public:

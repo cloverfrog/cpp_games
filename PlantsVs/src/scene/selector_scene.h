@@ -2,7 +2,6 @@
 #define SELECTOR_SCENE_H
 
 #include "scene/scene.h"
-#include "scene/scene_type.h"
 
 class SelectorScene : public Scene {
 public:

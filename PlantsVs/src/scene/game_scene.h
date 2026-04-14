@@ -2,7 +2,6 @@
 #define GAME_SCENE_H
 
 #include "scene/scene.h"
-#include "scene/scene_type.h"
 
 class GameScene : public Scene {
 public:

@@ -13,7 +13,7 @@
                 "PlantsVs/src",
                 "PlantsVs/third_party/**"
             ]
-        },
+        }
     ],
     "version": 4
 }
