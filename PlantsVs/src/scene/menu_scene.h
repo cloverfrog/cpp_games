@@ -3,6 +3,7 @@
 
 #include "scene/scene.h"
 
+namespace PlantsVs {
 class MenuScene : public Scene {
 public:
     MenuScene() = default;
@@ -14,5 +15,6 @@ public:
     void OnEvent(const ExMessage& msg) override;
     void OnExit() override;
 };
+}
 
 #endif // MENU_SCENE_H

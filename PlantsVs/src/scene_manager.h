@@ -10,6 +10,7 @@
 
 #include <memory>
 
+namespace PlantsVs {
 class SceneManager : public IObserver {
 public:
     SceneManager();
@@ -28,5 +29,6 @@ private:
     std::unique_ptr<GameScene> game_scene_;
     std::unique_ptr<SelectorScene> selector_scene_;
 };
+}
 
 #endif // SCENE_MANAGER_H

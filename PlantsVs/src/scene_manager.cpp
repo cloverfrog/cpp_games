@@ -1,5 +1,6 @@
 #include "scene_manager.h"
 
+namespace PlantsVs {
 SceneManager::SceneManager() {
     menu_scene_ = std::make_unique<MenuScene>();
     game_scene_ = std::make_unique<GameScene>();
@@ -30,4 +31,5 @@ void SceneManager::ChangeScene(SceneType type) {
         break;
     }
     current_scene_->OnEnter();
+}
 }

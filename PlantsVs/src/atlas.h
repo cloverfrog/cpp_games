@@ -7,12 +7,15 @@
 
 #include <graphics.h>
 
+namespace PlantsVs {
 class Atlas {
 public:
     Atlas() = default;
     ~Atlas() = default;
+    Atlas(const Atlas&) = delete;
+    Atlas& operator=(const Atlas&) = delete;
 
-    void LoadFromFile(std::string path, int num);
+    void LoadFromFile(std::string path, int num, std::string suffix="png");
     void LoadfromAtlas(Atlas& atlas, bool flip);
 
     IMAGE* GetImage(int index) {
@@ -25,5 +28,6 @@ public:
 private:
     std::vector<std::unique_ptr<IMAGE>> img_list_;
 };
+}
 
 #endif // ATLAS_H

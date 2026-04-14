@@ -3,6 +3,7 @@
 
 #include "scene/scene.h"
 
+namespace PlantsVs {
 class GameScene : public Scene {
 public:
     GameScene() = default;
@@ -14,5 +15,6 @@ public:
     void OnEvent(const ExMessage& msg) override;
     void OnExit() override;
 };
+}
 
 #endif // GAME_SCENE_H

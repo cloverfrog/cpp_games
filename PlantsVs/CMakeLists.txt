@@ -19,10 +19,12 @@ add_executable(PlantsVs
     src/scene/selector_scene.cpp
     src/scene_manager.cpp
     src/atlas.cpp
+    src/resource_manager.cpp
 )
 
 target_link_libraries(PlantsVs 
     PRIVATE 
         easyx
         winmm
+        msimg32
 )

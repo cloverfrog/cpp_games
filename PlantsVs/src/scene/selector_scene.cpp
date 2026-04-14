@@ -4,6 +4,7 @@
 
 #include "scene/scene_type.h"
 
+namespace PlantsVs {
 void SelectorScene::OnEnter() {
     std::cout << "进入选择界面" << std::endl;
 }
@@ -24,4 +25,5 @@ void SelectorScene::OnEvent(const ExMessage& msg) {
 
 void SelectorScene::OnExit() {
     std::cout << "退出选择界面" << std::endl;
+}
 }

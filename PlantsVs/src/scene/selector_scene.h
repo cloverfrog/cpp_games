@@ -3,6 +3,7 @@
 
 #include "scene/scene.h"
 
+namespace PlantsVs {
 class SelectorScene : public Scene {
 public:
     SelectorScene() = default;
@@ -14,5 +15,6 @@ public:
     void OnEvent(const ExMessage& msg) override;
     void OnExit() override;
 };
+}
 
 #endif // SELECTOR_SCENE_H

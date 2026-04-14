@@ -4,6 +4,7 @@
 
 #include "scene/scene_type.h"
 
+namespace PlantsVs {
 void MenuScene::OnEnter() {
     std::cout << "进入主菜单" << std::endl;
 }
@@ -24,4 +25,5 @@ void MenuScene::OnEvent(const ExMessage& msg) {
 
 void MenuScene::OnExit() {
     std::cout << "退出主菜单" << std::endl;
+}
 }

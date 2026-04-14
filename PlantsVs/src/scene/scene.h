@@ -5,6 +5,7 @@
 
 #include "base/i_observer.h"
 
+namespace PlantsVs {
 class Scene {
 public:
     Scene() = default;
@@ -20,5 +21,6 @@ public:
 protected:
     IObserver* observer_ = nullptr;
 };
+}
 
 #endif // SCENE_H

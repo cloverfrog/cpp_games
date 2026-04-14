@@ -4,6 +4,7 @@
 
 #include "scene/scene_type.h"
 
+namespace PlantsVs {
 void GameScene::OnEnter() {
     std::cout << "进入游戏" << std::endl;
 }
@@ -24,4 +25,5 @@ void GameScene::OnEvent(const ExMessage& msg) {
 
 void GameScene::OnExit() {
     std::cout << "退出游戏" << std::endl;
+}
 }

@@ -2,11 +2,14 @@
 #include <graphics.h>
 
 #include "scene_manager.h"
+#include "resource_manager.h"
 
+namespace{
 constexpr int kWidth = 1280;
 constexpr int kHeight = 720;
 constexpr int kFps = 60;
 constexpr int kFrameIntervalUs = 1000'000.0 / kFps;
+}
 
 int main() {
 	initgraph(kWidth, kHeight);
@@ -17,7 +20,9 @@ int main() {
     bool running = true;
 	
     /*==========初始化=========*/
-    SceneManager scene_manager;
+    PlantsVs::SceneManager scene_manager;
+    PlantsVs::ResourceManager resource_manager;
+    resource_manager.LoadResouces();
     /*==========初始化=========*/
 
 	while (running) {
