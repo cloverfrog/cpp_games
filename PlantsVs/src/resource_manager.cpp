@@ -101,19 +101,21 @@ void ResourceManager::FlipImage(std::string src_name, std::string dst_name) {
 }
 
 void ResourceManager::LoadAtlas(std::string name, std::string path, int num) {
-    atlas_list_[name].LoadFromFile(path, num);
+    atlas_list_[name] = std::make_unique<Atlas>();
+    atlas_list_[name]->LoadFromFile(path, num);
 }
 
 void ResourceManager::FlipAtlas(std::string src_name, std::string dst_name) {
-    atlas_list_[dst_name].LoadfromAtlas(atlas_list_[src_name], true);
+    atlas_list_[dst_name] = std::make_unique<Atlas>();
+    atlas_list_[dst_name]->LoadfromAtlas(*atlas_list_[src_name], true);
 }
 
-void ResourceManager::LoadSound(std::string name, std::string path) {
+void ResourceManager::LoadSound(std::string name, std::string path) const {
     std::string command = "open " + path + " alias " + name;
     mciSendString(_T(command.c_str()), NULL, 0, NULL);
 }
 
-void ResourceManager::SoundPlay(std::string name, bool loop) {
+void ResourceManager::SoundPlay(std::string name, bool loop) const {
     std::string command = "play " + name + " from 0";
     if (loop) command += " repeat";
     mciSendString(_T(command.c_str()), NULL, 0, NULL);

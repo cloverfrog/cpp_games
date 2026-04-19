@@ -13,7 +13,7 @@ void GameScene::OnUpdate() {
     std::cout << "游戏运行中……" << std::endl;
 }
 
-void GameScene::OnDraw() {
+void GameScene::OnDraw() const {
     outtextxy(100, 100, _T("游戏"));
 }
 

@@ -18,7 +18,7 @@ public:
 
     void OnEvent(const ExMessage& msg) { current_scene_->OnEvent(msg); }
     void OnUpdate() { current_scene_->OnUpdate(); }
-    void OnDraw() { current_scene_->OnDraw(); }
+    void OnDraw() const { current_scene_->OnDraw(); }
 
     void Notify(int code) override { ChangeScene((SceneType)code); }
 private:

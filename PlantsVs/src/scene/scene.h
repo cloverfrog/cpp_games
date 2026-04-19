@@ -15,7 +15,7 @@ public:
 
     virtual void OnEnter() {}
     virtual void OnUpdate() {}
-    virtual void OnDraw() {}
+    virtual void OnDraw() const{}
     virtual void OnEvent(const ExMessage& msg) {}
     virtual void OnExit() {}
 protected:

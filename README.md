@@ -1,9 +1,3 @@
-# cpp_games
-
-跟着b站Voidmatrix大佬学习C++游戏开发，自用。
-
-使用vscode编写代码，mingw工具包的gcc和make进行编译
-
 ## 所需工具
 
 vscode+gcc+make
@@ -20,8 +14,19 @@ vscode+gcc+make
 - `-L` 告诉链接器去哪里找 `.a`
 - `-leasyx` 指定具体库名
 
-## vscode配置
+## vscode 配置
 
 为了让 vscode 能够识别 esayx 库以给出代码提示，需要配置 `.vscode/c_cpp_properties.json` 文件，在 `includePath` 中添加 esayx 库文件的 `include` 目录，可以是相对路径
 
 配置 `.vscode/settings.json` 文件，添加 `"files.encoding": "gbk"`，以使中文字符正常显示，非要用 `utf-8` 的话会非常麻烦，会有踩不完的坑。
+
+## Cmake 方式
+
+使用 scoop 安装的 gcc+make+cmake 三件套，不要安装 mingw，会出现莫名其妙的问题
+
+写好 Cmake 后，调用
+
+```bash
+cmake -S . -B build -G "Unix Makefiles"
+make -C build
+```

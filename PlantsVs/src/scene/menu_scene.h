@@ -11,7 +11,7 @@ public:
 
     void OnEnter() override;
     void OnUpdate() override;
-    void OnDraw() override;
+    void OnDraw() const override;
     void OnEvent(const ExMessage& msg) override;
     void OnExit() override;
 };

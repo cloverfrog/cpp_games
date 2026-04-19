@@ -13,7 +13,7 @@ void SelectorScene::OnUpdate() {
     std::cout << "选择界面运行中……" << std::endl;
 }
 
-void SelectorScene::OnDraw() {
+void SelectorScene::OnDraw() const {
     outtextxy(100, 100, _T("选择界面"));
 }
 

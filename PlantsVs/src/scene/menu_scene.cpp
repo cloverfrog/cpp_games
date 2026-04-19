@@ -13,7 +13,7 @@ void MenuScene::OnUpdate() {
     std::cout << "主菜单运行中……" << std::endl;
 }
 
-void MenuScene::OnDraw() {
+void MenuScene::OnDraw() const {
     outtextxy(100, 100, _T("主菜单"));
 }
 
