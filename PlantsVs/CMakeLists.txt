@@ -20,6 +20,7 @@ add_executable(PlantsVs
     src/scene_manager.cpp
     src/atlas.cpp
     src/resource_manager.cpp
+    src/animation.cpp
 )
 
 target_link_libraries(PlantsVs 
@@ -27,4 +28,10 @@ target_link_libraries(PlantsVs
         easyx
         winmm
         msimg32
+)
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    "${CMAKE_CURRENT_SOURCE_DIR}/resources"
+    "$<TARGET_FILE_DIR:${PROJECT_NAME}>/resources"
 )

@@ -3,6 +3,7 @@
 
 #include <string>
 #include <unordered_map>
+#include <iostream>
 
 #include <graphics.h>
 
@@ -13,6 +14,13 @@ class ResourceManager {
 public:
     ResourceManager() = default;
     ~ResourceManager() = default;
+    ResourceManager(const ResourceManager&) = delete;
+    ResourceManager& operator=(const ResourceManager&) = delete;
+    
+    static ResourceManager& GetInstance() {
+        static ResourceManager instance; 
+        return instance;
+    }
 
     void LoadResouces();
 
@@ -29,6 +37,8 @@ private:
     std::unordered_map<std::string, std::unique_ptr<Atlas>> atlas_list_;
     std::unordered_map<std::string, std::unique_ptr<IMAGE>> img_list_;
 };
+
+inline ResourceManager& GetResourceManager() { return ResourceManager::GetInstance(); }
 }
 
 #endif // RESOURCE_MANAGER_H

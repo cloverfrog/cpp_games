@@ -20,9 +20,8 @@ int main() {
     bool running = true;
 	
     /*==========初始化=========*/
+    PlantsVs::GetResourceManager().LoadResouces();
     PlantsVs::SceneManager scene_manager;
-    PlantsVs::ResourceManager resource_manager;
-    resource_manager.LoadResouces();
     /*==========初始化=========*/
 
 	while (running) {
@@ -36,7 +35,7 @@ int main() {
 		}
 		
         /*==========处理数据=========*/
-        scene_manager.OnUpdate();
+        scene_manager.OnUpdate(static_cast<double>(kFrameIntervalUs) / 1000.0);
 		/*==========处理数据=========*/
 		
 		cleardevice();

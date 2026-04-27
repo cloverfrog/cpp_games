@@ -9,7 +9,7 @@ void GameScene::OnEnter() {
     std::cout << "进入游戏" << std::endl;
 }
 
-void GameScene::OnUpdate() {
+void GameScene::OnUpdate(double delta) {
     std::cout << "游戏运行中……" << std::endl;
 }
 

@@ -32,7 +32,7 @@ void ResourceManager::LoadResouces() {
 
     LoadImageFromFile("img_sky", "resources/sky.png");
     LoadImageFromFile("img_hills", "resources/hills.png");
-    LoadImageFromFile("img_platform_large", "resources/platform_large-png");
+    LoadImageFromFile("img_platform_large", "resources/platform_large.png");
     LoadImageFromFile("img_platform_small", "resources/platform_small.png");
 
     LoadImageFromFile("img_1P_cursor", "resources/1P_cursor.png");

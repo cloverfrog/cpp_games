@@ -2,6 +2,7 @@
 #define MENU_SCENE_H
 
 #include "scene/scene.h"
+#include "animation.h"
 
 namespace PlantsVs {
 class MenuScene : public Scene {
@@ -10,10 +11,12 @@ public:
     ~MenuScene() = default;
 
     void OnEnter() override;
-    void OnUpdate() override;
+    void OnUpdate(double delta) override;
     void OnDraw() const override;
     void OnEvent(const ExMessage& msg) override;
     void OnExit() override;
+private:
+    Animation animation_peashooter_run_right;
 };
 }
 

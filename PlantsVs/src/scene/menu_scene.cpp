@@ -6,15 +6,18 @@
 
 namespace PlantsVs {
 void MenuScene::OnEnter() {
-    std::cout << "进入主菜单" << std::endl;
+    // std::cout << "进入主菜单" << std::endl;
+    animation_peashooter_run_right.Init(GetResourceManager().GetAtlas("atlas_peashooter_run_right"), 75);
 }
 
-void MenuScene::OnUpdate() {
-    std::cout << "主菜单运行中……" << std::endl;
+void MenuScene::OnUpdate(double delta) {
+    // std::cout << "主菜单运行中……" << std::endl;
+    animation_peashooter_run_right.OnUpdate(delta);
 }
 
 void MenuScene::OnDraw() const {
-    outtextxy(100, 100, _T("主菜单"));
+    // outtextxy(100, 100, _T("主菜单"));
+    animation_peashooter_run_right.OnDraw(100, 100);
 }
 
 void MenuScene::OnEvent(const ExMessage& msg) {

@@ -1,0 +1,50 @@
+[
+{
+  "directory": "C:/MySpace/cpp_games/build",
+  "command": "C:\\Users\\cloverfrog\\scoop\\apps\\gcc\\current\\bin\\g++.exe -IC:/MySpace/cpp_games/PlantsVs/src -isystem C:/MySpace/cpp_games/PlantsVs/third_party/easyx/include -g -std=gnu++23 -o CMakeFiles\\PlantsVs.dir\\src\\main.cpp.obj -c C:\\MySpace\\cpp_games\\PlantsVs\\src\\main.cpp",
+  "file": "C:/MySpace/cpp_games/PlantsVs/src/main.cpp",
+  "output": "C:/MySpace/cpp_games/build/CMakeFiles/PlantsVs.dir/src/main.cpp.obj"
+},
+{
+  "directory": "C:/MySpace/cpp_games/build",
+  "command": "C:\\Users\\cloverfrog\\scoop\\apps\\gcc\\current\\bin\\g++.exe -IC:/MySpace/cpp_games/PlantsVs/src -isystem C:/MySpace/cpp_games/PlantsVs/third_party/easyx/include -g -std=gnu++23 -o CMakeFiles\\PlantsVs.dir\\src\\scene\\menu_scene.cpp.obj -c C:\\MySpace\\cpp_games\\PlantsVs\\src\\scene\\menu_scene.cpp",
+  "file": "C:/MySpace/cpp_games/PlantsVs/src/scene/menu_scene.cpp",
+  "output": "C:/MySpace/cpp_games/build/CMakeFiles/PlantsVs.dir/src/scene/menu_scene.cpp.obj"
+},
+{
+  "directory": "C:/MySpace/cpp_games/build",
+  "command": "C:\\Users\\cloverfrog\\scoop\\apps\\gcc\\current\\bin\\g++.exe -IC:/MySpace/cpp_games/PlantsVs/src -isystem C:/MySpace/cpp_games/PlantsVs/third_party/easyx/include -g -std=gnu++23 -o CMakeFiles\\PlantsVs.dir\\src\\scene\\game_scene.cpp.obj -c C:\\MySpace\\cpp_games\\PlantsVs\\src\\scene\\game_scene.cpp",
+  "file": "C:/MySpace/cpp_games/PlantsVs/src/scene/game_scene.cpp",
+  "output": "C:/MySpace/cpp_games/build/CMakeFiles/PlantsVs.dir/src/scene/game_scene.cpp.obj"
+},
+{
+  "directory": "C:/MySpace/cpp_games/build",
+  "command": "C:\\Users\\cloverfrog\\scoop\\apps\\gcc\\current\\bin\\g++.exe -IC:/MySpace/cpp_games/PlantsVs/src -isystem C:/MySpace/cpp_games/PlantsVs/third_party/easyx/include -g -std=gnu++23 -o CMakeFiles\\PlantsVs.dir\\src\\scene\\selector_scene.cpp.obj -c C:\\MySpace\\cpp_games\\PlantsVs\\src\\scene\\selector_scene.cpp",
+  "file": "C:/MySpace/cpp_games/PlantsVs/src/scene/selector_scene.cpp",
+  "output": "C:/MySpace/cpp_games/build/CMakeFiles/PlantsVs.dir/src/scene/selector_scene.cpp.obj"
+},
+{
+  "directory": "C:/MySpace/cpp_games/build",
+  "command": "C:\\Users\\cloverfrog\\scoop\\apps\\gcc\\current\\bin\\g++.exe -IC:/MySpace/cpp_games/PlantsVs/src -isystem C:/MySpace/cpp_games/PlantsVs/third_party/easyx/include -g -std=gnu++23 -o CMakeFiles\\PlantsVs.dir\\src\\scene_manager.cpp.obj -c C:\\MySpace\\cpp_games\\PlantsVs\\src\\scene_manager.cpp",
+  "file": "C:/MySpace/cpp_games/PlantsVs/src/scene_manager.cpp",
+  "output": "C:/MySpace/cpp_games/build/CMakeFiles/PlantsVs.dir/src/scene_manager.cpp.obj"
+},
+{
+  "directory": "C:/MySpace/cpp_games/build",
+  "command": "C:\\Users\\cloverfrog\\scoop\\apps\\gcc\\current\\bin\\g++.exe -IC:/MySpace/cpp_games/PlantsVs/src -isystem C:/MySpace/cpp_games/PlantsVs/third_party/easyx/include -g -std=gnu++23 -o CMakeFiles\\PlantsVs.dir\\src\\atlas.cpp.obj -c C:\\MySpace\\cpp_games\\PlantsVs\\src\\atlas.cpp",
+  "file": "C:/MySpace/cpp_games/PlantsVs/src/atlas.cpp",
+  "output": "C:/MySpace/cpp_games/build/CMakeFiles/PlantsVs.dir/src/atlas.cpp.obj"
+},
+{
+  "directory": "C:/MySpace/cpp_games/build",
+  "command": "C:\\Users\\cloverfrog\\scoop\\apps\\gcc\\current\\bin\\g++.exe -IC:/MySpace/cpp_games/PlantsVs/src -isystem C:/MySpace/cpp_games/PlantsVs/third_party/easyx/include -g -std=gnu++23 -o CMakeFiles\\PlantsVs.dir\\src\\resource_manager.cpp.obj -c C:\\MySpace\\cpp_games\\PlantsVs\\src\\resource_manager.cpp",
+  "file": "C:/MySpace/cpp_games/PlantsVs/src/resource_manager.cpp",
+  "output": "C:/MySpace/cpp_games/build/CMakeFiles/PlantsVs.dir/src/resource_manager.cpp.obj"
+},
+{
+  "directory": "C:/MySpace/cpp_games/build",
+  "command": "C:\\Users\\cloverfrog\\scoop\\apps\\gcc\\current\\bin\\g++.exe -IC:/MySpace/cpp_games/PlantsVs/src -isystem C:/MySpace/cpp_games/PlantsVs/third_party/easyx/include -g -std=gnu++23 -o CMakeFiles\\PlantsVs.dir\\src\\animation.cpp.obj -c C:\\MySpace\\cpp_games\\PlantsVs\\src\\animation.cpp",
+  "file": "C:/MySpace/cpp_games/PlantsVs/src/animation.cpp",
+  "output": "C:/MySpace/cpp_games/build/CMakeFiles/PlantsVs.dir/src/animation.cpp.obj"
+}
+]

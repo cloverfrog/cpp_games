@@ -8,7 +8,7 @@ void Atlas::LoadFromFile(std::string path, int num, std::string suffix) {
     img_list_.resize(num);
     for (int i = 0; i < num; i++) {
         img_list_[i] = std::make_unique<IMAGE>();
-        std::string path_i = path + "_" + std::to_string(i) + "." + suffix;
+        std::string path_i = path + "_" + std::to_string(i+1) + "." + suffix;
         loadimage_safe(img_list_[i].get(), path_i.c_str());
     }
 }

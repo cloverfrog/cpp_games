@@ -14,7 +14,7 @@ public:
     void SetObserver(IObserver* observer) { observer_ = observer; }
 
     virtual void OnEnter() {}
-    virtual void OnUpdate() {}
+    virtual void OnUpdate(double delta) {}
     virtual void OnDraw() const{}
     virtual void OnEvent(const ExMessage& msg) {}
     virtual void OnExit() {}
