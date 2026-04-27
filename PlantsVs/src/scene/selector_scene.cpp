@@ -2,8 +2,6 @@
 
 #include <iostream>
 
-#include "scene/scene_type.h"
-
 namespace PlantsVs {
 void SelectorScene::OnEnter() {
     std::cout << "进入选择界面" << std::endl;
@@ -19,7 +17,7 @@ void SelectorScene::OnDraw() const {
 
 void SelectorScene::OnEvent(const ExMessage& msg) {
     if(msg.message == WM_KEYDOWN) {
-        if(observer_) observer_->Notify((int)SceneType::Game);
+        if(change_scene_callback_) change_scene_callback_(SceneType::Game);
     }
 }
 

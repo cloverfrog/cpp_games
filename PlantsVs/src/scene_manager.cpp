@@ -6,9 +6,9 @@ SceneManager::SceneManager() {
     game_scene_ = std::make_unique<GameScene>();
     selector_scene_ = std::make_unique<SelectorScene>();
 
-    menu_scene_->SetObserver(this);
-    game_scene_->SetObserver(this);
-    selector_scene_->SetObserver(this);
+    menu_scene_->SetChangeSceneCallback([this](SceneType type){ ChangeScene(type); });
+    game_scene_->SetChangeSceneCallback([this](SceneType type){ ChangeScene(type); });
+    selector_scene_->SetChangeSceneCallback([this](SceneType type){ ChangeScene(type); });
 
     ChangeScene(SceneType::Menu);
 }

@@ -1,9 +1,12 @@
 #ifndef SCENE_H
 #define SCENE_H
 
+#include <functional>
+
 #include <graphics.h>
 
 #include "base/i_observer.h"
+#include "scene/scene_type.h"
 
 namespace PlantsVs {
 class Scene {
@@ -11,7 +14,7 @@ public:
     Scene() = default;
     ~Scene() = default;
 
-    void SetObserver(IObserver* observer) { observer_ = observer; }
+    void SetChangeSceneCallback(std::function<void(SceneType)> callback) { change_scene_callback_ = callback; }
 
     virtual void OnEnter() {}
     virtual void OnUpdate(double delta) {}
@@ -19,7 +22,7 @@ public:
     virtual void OnEvent(const ExMessage& msg) {}
     virtual void OnExit() {}
 protected:
-    IObserver* observer_ = nullptr;
+    std::function<void(SceneType)> change_scene_callback_ = nullptr;
 };
 }
 

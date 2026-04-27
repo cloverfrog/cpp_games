@@ -1,6 +1,8 @@
 #ifndef SELECTOR_SCENE_H
 #define SELECTOR_SCENE_H
 
+#include <graphics.h>
+
 #include "scene/scene.h"
 
 namespace PlantsVs {

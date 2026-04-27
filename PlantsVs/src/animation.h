@@ -16,7 +16,7 @@ public:
     ~Animation() = default;
 
     void Reset() { timer_ = 0; idx_frame_ = 0; }
-    void Init(const Atlas* atlas, double interval, bool is_loop=true, std::function<void()> callback=nullptr) { atlas_ = atlas; interval_ = interval; is_loop_ = is_loop; }
+    void Init(const Atlas* atlas, double interval, bool is_loop=true, std::function<void()> callback=nullptr) { atlas_ = atlas; interval_ = interval; is_loop_ = is_loop; callback_ = callback; }
 
     void OnUpdate(double delta);
     void OnDraw(int x, int y) const { putimage_alpha_center(x, y, atlas_->GetImage(idx_frame_)); }

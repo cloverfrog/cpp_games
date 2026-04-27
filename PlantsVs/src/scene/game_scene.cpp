@@ -1,8 +1,6 @@
 #include "scene/game_scene.h"
 
-#include<iostream>
-
-#include "scene/scene_type.h"
+#include <iostream>
 
 namespace PlantsVs {
 void GameScene::OnEnter() {
@@ -19,7 +17,7 @@ void GameScene::OnDraw() const {
 
 void GameScene::OnEvent(const ExMessage& msg) {
     if(msg.message == WM_KEYDOWN) {
-        if(observer_) observer_->Notify((int)SceneType::Menu);
+        if(change_scene_callback_) change_scene_callback_(SceneType::Menu);
     }
 }
 

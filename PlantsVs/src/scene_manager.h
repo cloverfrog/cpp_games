@@ -1,7 +1,6 @@
 #ifndef SCENE_MANAGER_H
 #define SCENE_MANAGER_H
 
-#include "base/i_observer.h"
 #include "scene/scene.h"
 #include "scene/scene_type.h"
 #include "scene/menu_scene.h"
@@ -11,7 +10,7 @@
 #include <memory>
 
 namespace PlantsVs {
-class SceneManager : public IObserver {
+class SceneManager {
 public:
     SceneManager();
     ~SceneManager() = default;
@@ -19,8 +18,6 @@ public:
     void OnEvent(const ExMessage& msg) { current_scene_->OnEvent(msg); }
     void OnUpdate(double delta) { current_scene_->OnUpdate(delta); }
     void OnDraw() const { current_scene_->OnDraw(); }
-
-    void Notify(int code) override { ChangeScene((SceneType)code); }
 private:
     void ChangeScene(SceneType type);
 private:

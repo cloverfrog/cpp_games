@@ -1,6 +1,8 @@
 #ifndef MENU_SCENE_H
 #define MENU_SCENE_H
 
+#include <graphics.h>
+
 #include "scene/scene.h"
 #include "animation.h"
 
@@ -16,7 +18,7 @@ public:
     void OnEvent(const ExMessage& msg) override;
     void OnExit() override;
 private:
-    Animation animation_peashooter_run_right;
+    Animation animation_peashooter_run_right_;
 };
 }
 
