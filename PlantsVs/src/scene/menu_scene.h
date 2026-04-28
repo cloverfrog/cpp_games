@@ -5,6 +5,7 @@
 
 #include "scene/scene.h"
 #include "animation.h"
+#include "camera.h"
 
 namespace PlantsVs {
 class MenuScene : public Scene {
@@ -19,6 +20,7 @@ public:
     void OnExit() override;
 private:
     Animation animation_peashooter_run_right_;
+    Camera camera_;
 };
 }
 
