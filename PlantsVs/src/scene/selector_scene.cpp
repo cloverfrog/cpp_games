@@ -7,8 +7,8 @@ void SelectorScene::OnEnter() {
     std::cout << "进入选择界面" << std::endl;
 }
 
-void SelectorScene::OnUpdate(double delta) {
-    std::cout << "选择界面运行中……" << std::endl;
+void SelectorScene::OnUpdate(float delta) {
+    std::cout << "选择界面运行中……" << delta << std::endl;
 }
 
 void SelectorScene::OnDraw() const {

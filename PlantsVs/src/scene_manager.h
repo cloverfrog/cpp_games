@@ -16,7 +16,7 @@ public:
     ~SceneManager() = default;
 
     void OnEvent(const ExMessage& msg) { current_scene_->OnEvent(msg); }
-    void OnUpdate(double delta) { current_scene_->OnUpdate(delta); }
+    void OnUpdate(float delta) { current_scene_->OnUpdate(delta); }
     void OnDraw() const { current_scene_->OnDraw(); }
 private:
     void ChangeScene(SceneType type);

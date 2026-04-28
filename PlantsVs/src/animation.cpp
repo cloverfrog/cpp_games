@@ -1,7 +1,7 @@
 #include "animation.h"
 
 namespace PlantsVs {
-void Animation::OnUpdate(double delta) {
+void Animation::OnUpdate(float delta) {
     timer_ += delta;
     if (timer_ >= interval_) {
         timer_ -= interval_;

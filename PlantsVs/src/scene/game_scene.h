@@ -6,13 +6,13 @@
 #include "scene/scene.h"
 
 namespace PlantsVs {
-class GameScene : public Scene {
+class GameScene final: public Scene {
 public:
     GameScene() = default;
     ~GameScene() = default;
 
     void OnEnter() override;
-    void OnUpdate(double delta) override;
+    void OnUpdate(float delta) override;
     void OnDraw() const override;
     void OnEvent(const ExMessage& msg) override;
     void OnExit() override;

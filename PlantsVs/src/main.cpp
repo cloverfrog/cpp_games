@@ -8,7 +8,7 @@ namespace{
 constexpr int kWidth = 1280;
 constexpr int kHeight = 720;
 constexpr int kFps = 60;
-constexpr int kFrameIntervalUs = 1000'000.0 / kFps;
+constexpr int kFrameIntervalUs = static_cast<int>(1000'000.0f / static_cast<float>(kFps));
 }
 
 int main() {
@@ -35,7 +35,7 @@ int main() {
 		}
 		
         /*==========处理数据=========*/
-        scene_manager.OnUpdate(static_cast<double>(kFrameIntervalUs) / 1000.0);
+        scene_manager.OnUpdate(static_cast<float>(kFrameIntervalUs) / 1000.0f);
 		/*==========处理数据=========*/
 		
 		cleardevice();

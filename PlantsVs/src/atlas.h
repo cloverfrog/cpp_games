@@ -15,11 +15,11 @@ public:
     Atlas(const Atlas&) = delete;
     Atlas& operator=(const Atlas&) = delete;
 
-    void LoadFromFile(std::string path, int num, std::string suffix="png");
+    void LoadFromFile(std::string path, size_t num, std::string suffix="png");
     void LoadfromAtlas(Atlas& atlas, bool flip);
 
-    IMAGE* GetImage(int index) const {
-        if (index < 0 || index >= img_list_.size()) return nullptr;
+    IMAGE* GetImage(size_t index) const {
+        if (index >= img_list_.size()) return nullptr;
         return img_list_[index].get();
     }
     void Clear() { img_list_.clear(); }

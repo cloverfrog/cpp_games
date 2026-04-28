@@ -8,13 +8,13 @@
 #include "camera.h"
 
 namespace PlantsVs {
-class MenuScene : public Scene {
+class MenuScene final: public Scene {
 public:
     MenuScene() = default;
     ~MenuScene() = default;
 
     void OnEnter() override;
-    void OnUpdate(double delta) override;
+    void OnUpdate(float delta) override;
     void OnDraw() const override;
     void OnEvent(const ExMessage& msg) override;
     void OnExit() override;

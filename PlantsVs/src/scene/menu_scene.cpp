@@ -2,14 +2,17 @@
 
 #include <iostream>
 
+#include "resource_manager.h"
+
 namespace PlantsVs {
 void MenuScene::OnEnter() {
     animation_peashooter_run_right_.Init(GetResourceManager().GetAtlas("atlas_peashooter_run_right"), 100, true);
     camera_.Reset();
 }
 
-void MenuScene::OnUpdate(double delta) {
+void MenuScene::OnUpdate(float delta) {
     animation_peashooter_run_right_.OnUpdate(delta);
+    camera_.OnUpdate(delta);
 }
 
 void MenuScene::OnDraw() const {

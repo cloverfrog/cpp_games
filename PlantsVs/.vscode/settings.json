@@ -2,5 +2,12 @@
     "files.encoding": "gbk",
     "[cpp]": {
         "files.encoding": "gbk"
-    }
+    },
+    "clangd.arguments": [
+        "--compile-commands-dir=build",
+        "--query-driver=*/g++.exe",
+        "--header-insertion=never",
+        "--all-scopes-completion",
+        "--completion-style=detailed"
+    ]
 }

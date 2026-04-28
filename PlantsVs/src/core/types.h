@@ -19,7 +19,7 @@ struct Vector2 {
     Vector2 operator*(float scalar) const { return Vector2(x * scalar, y * scalar); }
     void operator*=(float scalar) { x *= scalar; y *= scalar; }
 
-    float Length() const { return sqrt(x * x + y * y); }
+    float Length() const { return std::sqrt(x * x + y * y); }
     Vector2 Normalize() const { 
         float length = Length();
         if (length == 0) return Vector2(0, 0);
