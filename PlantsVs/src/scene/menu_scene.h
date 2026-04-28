@@ -4,8 +4,9 @@
 #include <graphics.h>
 
 #include "scene/scene.h"
-#include "animation.h"
+#include "core/timer.h"
 #include "camera.h"
+#include "animation.h"
 
 namespace PlantsVs {
 class MenuScene final: public Scene {
@@ -19,8 +20,9 @@ public:
     void OnEvent(const ExMessage& msg) override;
     void OnExit() override;
 private:
-    Animation animation_peashooter_run_right_;
+    Timer timer_;
     Camera camera_;
+    Animation animation_peashooter_run_right_;
 };
 }
 

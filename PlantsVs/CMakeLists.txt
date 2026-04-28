@@ -17,13 +17,15 @@ include_directories(src)
 
 add_executable(PlantsVs
     src/main.cpp
+    src/core/timer.cpp
+    src/camera.cpp
+    src/atlas.cpp
+    src/animation.cpp
+    src/resource_manager.cpp
     src/scene/menu_scene.cpp
     src/scene/game_scene.cpp
     src/scene/selector_scene.cpp
     src/scene_manager.cpp
-    src/atlas.cpp
-    src/resource_manager.cpp
-    src/animation.cpp
 )
 
 target_link_libraries(PlantsVs 

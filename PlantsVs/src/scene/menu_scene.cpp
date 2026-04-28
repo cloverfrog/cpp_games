@@ -6,13 +6,17 @@
 
 namespace PlantsVs {
 void MenuScene::OnEnter() {
-    animation_peashooter_run_right_.Init(GetResourceManager().GetAtlas("atlas_peashooter_run_right"), 100, true);
+    timer_.Init(1000.0f, false, []() {
+        std::cout << "Timer triggered!" << std::endl;
+    });
     camera_.Reset();
+    animation_peashooter_run_right_.Init(GetResourceManager().GetAtlas("atlas_peashooter_run_right"), 100, true);
 }
 
 void MenuScene::OnUpdate(float delta) {
-    animation_peashooter_run_right_.OnUpdate(delta);
+    timer_.OnUpdate(delta);
     camera_.OnUpdate(delta);
+    animation_peashooter_run_right_.OnUpdate(delta);
 }
 
 void MenuScene::OnDraw() const {
