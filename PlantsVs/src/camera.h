@@ -14,6 +14,8 @@ public:
         position_ += speed * static_cast<float>(delta);
     }
 
+    //TODO: 添加抖动效果
+
     const Vector2& GetPosition() const { return position_; }
     void Reset() { position_ = Vector2(0, 0); }
 private:
