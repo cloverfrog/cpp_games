@@ -100,7 +100,7 @@ void ResourceManager::FlipImage(std::string src_name, std::string dst_name) {
     flipimage(img_list_[src_name].get(), img_list_[dst_name].get());
 }
 
-void ResourceManager::LoadAtlas(std::string name, std::string path, int num) {
+void ResourceManager::LoadAtlas(std::string name, std::string path, size_t num) {
     atlas_list_[name] = std::make_unique<Atlas>();
     atlas_list_[name]->LoadFromFile(path, num);
 }

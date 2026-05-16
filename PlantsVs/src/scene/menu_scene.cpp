@@ -28,6 +28,9 @@ void MenuScene::OnEvent(const ExMessage& msg) {
     if(msg.message == WM_KEYDOWN) {
         if(change_scene_callback_) change_scene_callback_(SceneType::Selector);
     }
+    else if(msg.message == WM_LBUTTONDOWN) {
+        camera_.Shake(10.0f, 350.0f);
+    }
 }
 
 void MenuScene::OnExit() {

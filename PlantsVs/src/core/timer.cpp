@@ -2,7 +2,7 @@
 
 namespace PlantsVs {
 void Timer::OnUpdate(float delta) {
-    if (puased_ || (one_shot_ && shotted_))
+    if (puased_ || (one_shot_ && shotted_) || wait_time_ <= 0.0f)
         return;
     pass_time_ += delta;
     if (pass_time_ >= wait_time_) {

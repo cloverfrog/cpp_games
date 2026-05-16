@@ -29,7 +29,7 @@ public:
 private:
     void LoadImageFromFile(std::string name, std::string path);
     void FlipImage(std::string src_name, std::string dst_name);
-    void LoadAtlas(std::string name, std::string path, int num);
+    void LoadAtlas(std::string name, std::string path, size_t num);
     void FlipAtlas(std::string src_name, std::string dst_name);
     void LoadSound(std::string name, std::string path) const;
 private:

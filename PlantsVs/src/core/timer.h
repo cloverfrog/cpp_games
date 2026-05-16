@@ -17,6 +17,7 @@ public:
         callback_ = callback;
         Restart();
     }
+    void SetWaitTime(float wait_time) { wait_time_ = wait_time; }
     void Restart() { pass_time_ = 0.0f; shotted_ = false; }
     void Pause() { puased_ = true; }
     void Resume() { puased_ = false; }
