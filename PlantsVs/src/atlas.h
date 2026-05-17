@@ -18,7 +18,7 @@ public:
     void LoadFromFile(std::string path, size_t num, std::string suffix="png");
     void LoadfromAtlas(Atlas& atlas, bool flip);
 
-    IMAGE* GetImage(size_t index) const {
+    const IMAGE* GetImage(size_t index) const {
         if (index >= img_list_.size()) return nullptr;
         return img_list_[index].get();
     }

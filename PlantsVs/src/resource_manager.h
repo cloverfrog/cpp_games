@@ -6,16 +6,13 @@
 
 #include <graphics.h>
 
+#include <base/singleton.h>
 #include <atlas.h>
 
 namespace PlantsVs {
-class ResourceManager {
+class ResourceManager : public Singleton<ResourceManager> {
+    friend class Singleton<ResourceManager>;
 public:
-    ResourceManager() = default;
-    ~ResourceManager() = default;
-    ResourceManager(const ResourceManager&) = delete;
-    ResourceManager& operator=(const ResourceManager&) = delete;
-    
     static ResourceManager& GetInstance() {
         static ResourceManager instance; 
         return instance;
@@ -26,6 +23,9 @@ public:
     const Atlas* GetAtlas(std::string name) const { return atlas_list_.at(name).get(); }
     const IMAGE* GetImage(std::string name) const { return img_list_.at(name).get(); }
     void SoundPlay(std::string name, bool loop=false) const;
+private:
+    ResourceManager() = default;
+    ~ResourceManager() = default;
 private:
     void LoadImageFromFile(std::string name, std::string path);
     void FlipImage(std::string src_name, std::string dst_name);

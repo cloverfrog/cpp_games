@@ -21,8 +21,6 @@ public:
     void OnExit() override;
 private:
     Timer timer_;
-    Camera camera_;
-    Animation animation_peashooter_run_right_;
 };
 }
 

@@ -21,7 +21,7 @@ public:
     void OnDraw(int x, int y) const { putimage_alpha_center(x, y, atlas_->GetImage(idx_frame_)); }
 
     size_t GetIdxFrame() const { return idx_frame_; }
-    IMAGE* GetImage() const { return atlas_->GetImage(idx_frame_); }
+    const IMAGE* GetImage() const { return atlas_->GetImage(idx_frame_); }
     bool CheckFinish() const { return !is_loop_ && idx_frame_ == atlas_->size() - 1; }
 private:
     float timer_ = 0.;

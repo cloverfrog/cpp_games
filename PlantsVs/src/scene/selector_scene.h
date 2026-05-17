@@ -4,6 +4,7 @@
 #include <graphics.h>
 
 #include "scene/scene.h"
+#include "animation.h"
 
 namespace PlantsVs {
 class SelectorScene final: public Scene {
@@ -16,6 +17,9 @@ public:
     void OnDraw() const override;
     void OnEvent(const ExMessage& msg) override;
     void OnExit() override;
+private:
+    Animation animation_peashooter_;
+    Animation animation_sunflower_;
 };
 }
 

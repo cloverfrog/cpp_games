@@ -32,7 +32,7 @@ inline void putimage_alpha(int x, int y, IMAGE* img) {
     AlphaBlend(GetImageHDC(), x, y, w, h,
         GetImageHDC(img), 0, 0, w, h, { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA });
 }
-inline void putimage_alpha_center(int x, int y, IMAGE* img) {
+inline void putimage_alpha_center(int x, int y, const IMAGE* img) {
     int w = img->getwidth();
     int h = img->getheight();
     AlphaBlend(GetImageHDC(), x-w/2, y-h/2, w, h,
@@ -40,7 +40,7 @@ inline void putimage_alpha_center(int x, int y, IMAGE* img) {
 }
 
 //Í¼Ïñ·­×ª
-inline void flipimage(IMAGE* src, IMAGE* dst) {
+inline void flipimage(const IMAGE* src, IMAGE* dst) {
     int w = src->getwidth();
     int h = src->getheight();
     Resize(dst, w, h);
