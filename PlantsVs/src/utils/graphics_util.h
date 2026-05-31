@@ -26,13 +26,13 @@ inline void loadimage_safe(IMAGE* pDstImg, LPCTSTR pImgFile, int nWidth = 0, int
 #ifdef _MSC_VER
 #pragma comment(lib, "MSIMG32.LIB")
 #endif
-inline void putimage_alpha(int x, int y, IMAGE* img) {
+inline void putimage_alpha(const IMAGE* img, int x, int y) {
     int w = img->getwidth();
     int h = img->getheight();
     AlphaBlend(GetImageHDC(), x, y, w, h,
         GetImageHDC(img), 0, 0, w, h, { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA });
 }
-inline void putimage_alpha_center(int x, int y, const IMAGE* img) {
+inline void putimage_alpha_center(const IMAGE* img, int x, int y) {
     int w = img->getwidth();
     int h = img->getheight();
     AlphaBlend(GetImageHDC(), x-w/2, y-h/2, w, h,

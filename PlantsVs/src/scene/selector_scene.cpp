@@ -33,18 +33,18 @@ void SelectorScene::OnEnter() {
     pos_img_VS.x = getwidth() / 2;
     pos_img_VS.y = getheight() / 2;
     pos_img_tip.x = getwidth() / 2;
-    pos_img_tip.y = getheight() - 125 + GetResourceManager().GetImage("img_selector_tip")->getheight() / 2;
+    pos_img_tip.y = getheight() - 105;
 
     pos_img_1P.x = getwidth() / 4 - OFFSET;
-    pos_img_1P.y = 35 + GetResourceManager().GetImage("img_1P")->getheight() / 2;
+    pos_img_1P.y = 72;
     pos_img_2P.x = getwidth() / 4 * 3 + OFFSET;
     pos_img_2P.y = pos_img_1P.y;
     pos_img_1P_desc.x = pos_img_1P.x;
-    pos_img_1P_desc.y = getheight() - 150 + GetResourceManager().GetImage("img_1P_desc")->getheight() / 2;
+    pos_img_1P_desc.y = getheight() - 113;
     pos_img_2P_desc.x = pos_img_2P.x;
     pos_img_2P_desc.y = pos_img_1P_desc.y;
     pos_img_1P_gravestone.x = pos_img_1P.x;
-    pos_img_1P_gravestone.y = pos_img_1P.y + GetResourceManager().GetImage("img_1P")->getheight() / 2 + GetResourceManager().GetImage("img_gravestone_right")->getheight() / 2 + 35;
+    pos_img_1P_gravestone.y = pos_img_1P.y + 260;
     pos_img_2P_gravestone.x = pos_img_2P.x;
     pos_img_2P_gravestone.y = pos_img_1P_gravestone.y;
     // pos_animation_1P.x = pos_img_1P.x;
@@ -72,17 +72,17 @@ void SelectorScene::OnUpdate(float delta) {
 void SelectorScene::OnDraw() const {
     putimage(0, 0, GetResourceManager().GetImage("img_selector_background"));
 
-    putimage_alpha_center(pos_img_VS.x, pos_img_VS.y, GetResourceManager().GetImage("img_VS"));
+    putimage_alpha_center(GetResourceManager().GetImage("img_VS"), pos_img_VS.x, pos_img_VS.y);
 
-    putimage_alpha_center(pos_img_1P.x, pos_img_1P.y, GetResourceManager().GetImage("img_1P"));
-    putimage_alpha_center(pos_img_2P.x, pos_img_2P.y, GetResourceManager().GetImage("img_2P"));
-    putimage_alpha_center(pos_img_1P_gravestone.x, pos_img_1P_gravestone.y, GetResourceManager().GetImage("img_gravestone_right"));
-    putimage_alpha_center(pos_img_2P_gravestone.x, pos_img_2P_gravestone.y, GetResourceManager().GetImage("img_gravestone_left"));
+    putimage_alpha_center(GetResourceManager().GetImage("img_1P"), pos_img_1P.x, pos_img_1P.y);
+    putimage_alpha_center(GetResourceManager().GetImage("img_2P"), pos_img_2P.x, pos_img_2P.y);
+    putimage_alpha_center(GetResourceManager().GetImage("img_gravestone_right"), pos_img_1P_gravestone.x, pos_img_1P_gravestone.y);
+    putimage_alpha_center(GetResourceManager().GetImage("img_gravestone_left"), pos_img_2P_gravestone.x, pos_img_2P_gravestone.y);
 
-    putimage_alpha_center(pos_img_1P_desc.x, pos_img_1P_desc.y, GetResourceManager().GetImage("img_1P_desc"));
-    putimage_alpha_center(pos_img_2P_desc.x, pos_img_2P_desc.y, GetResourceManager().GetImage("img_2P_desc"));
-    
-    putimage_alpha_center(pos_img_tip.x, pos_img_tip.y, GetResourceManager().GetImage("img_selector_tip"));
+    putimage_alpha_center(GetResourceManager().GetImage("img_1P_desc"), pos_img_1P_desc.x, pos_img_1P_desc.y);
+    putimage_alpha_center(GetResourceManager().GetImage("img_2P_desc"), pos_img_2P_desc.x, pos_img_2P_desc.y);
+
+    putimage_alpha_center(GetResourceManager().GetImage("img_selector_tip"), pos_img_tip.x, pos_img_tip.y);
 }
 
 void SelectorScene::OnEvent(const ExMessage& msg) {
