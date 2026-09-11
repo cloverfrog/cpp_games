@@ -25,6 +25,7 @@ namespace {
     POINT pos_2P_selector_btn_right = {0, 0}; // 2P 向右切换按钮位置
 
     constexpr int OFFSET = 50;
+    constexpr int SCROLL_WIDTH = 560;
 }
 void SelectorScene::OnEnter() {
     animation_peashooter_.Init(GetResourceManager().GetAtlas("atlas_peashooter_idle_right"), 100);
@@ -33,44 +34,81 @@ void SelectorScene::OnEnter() {
     pos_img_VS.x = getwidth() / 2;
     pos_img_VS.y = getheight() / 2;
     pos_img_tip.x = getwidth() / 2;
-    pos_img_tip.y = getheight() - 125 + GetResourceManager().GetImage("img_selector_tip")->getheight() / 2;
+    // pos_img_tip.y = getheight() - 125 + GetResourceManager().GetImage("img_selector_tip")->getheight() / 2;
+    pos_img_tip.y = getheight() - 105;
 
     pos_img_1P.x = getwidth() / 4 - OFFSET;
-    pos_img_1P.y = 35 + GetResourceManager().GetImage("img_1P")->getheight() / 2;
+    // pos_img_1P.y = 35 + GetResourceManager().GetImage("img_1P")->getheight() / 2;
+    pos_img_1P.y = 72;
     pos_img_2P.x = getwidth() / 4 * 3 + OFFSET;
     pos_img_2P.y = pos_img_1P.y;
     pos_img_1P_desc.x = pos_img_1P.x;
-    pos_img_1P_desc.y = getheight() - 150 + GetResourceManager().GetImage("img_1P_desc")->getheight() / 2;
+    // pos_img_1P_desc.y = getheight() - 150 + GetResourceManager().GetImage("img_1P_desc")->getheight() / 2;
+    pos_img_1P_desc.y = getheight() - 112;
     pos_img_2P_desc.x = pos_img_2P.x;
     pos_img_2P_desc.y = pos_img_1P_desc.y;
     pos_img_1P_gravestone.x = pos_img_1P.x;
-    pos_img_1P_gravestone.y = pos_img_1P.y + GetResourceManager().GetImage("img_1P")->getheight() / 2 + GetResourceManager().GetImage("img_gravestone_right")->getheight() / 2 + 35;
+    // pos_img_1P_gravestone.y = pos_img_1P.y + GetResourceManager().GetImage("img_1P")->getheight() / 2 + GetResourceManager().GetImage("img_gravestone_right")->getheight() / 2 + 35;
+    pos_img_1P_gravestone.y = pos_img_1P.y + 260;
     pos_img_2P_gravestone.x = pos_img_2P.x;
     pos_img_2P_gravestone.y = pos_img_1P_gravestone.y;
-    // pos_animation_1P.x = pos_img_1P.x;
-    // pos_animation_1P.y = pos_img_1P_gravestone.y + 80;
-    // pos_animation_2P.x = pos_img_2P.x;
-    // pos_animation_2P.y = pos_animation_1P.y;
-    // // pos_img_1P_name.x = getwidth() / 2 - OFFSET;
-    // pos_img_1P_name.y = pos_animation_1P.y + 155;
-    // // pos_img_2P_name.x = getwidth() / 2 + OFFSET;
-    // pos_img_2P_name.y = pos_img_1P_name.y;
-    // pos_1P_selector_btn_left.x = getwidth() / 2 - OFFSET;
-    // pos_1P_selector_btn_left.y = getheight() - 50;
-    // pos_1P_selector_btn_right.x = getwidth() / 2 - OFFSET;
-    // pos_1P_selector_btn_right.y = getheight() - 50;
-    // pos_2P_selector_btn_left.x = getwidth() / 2 + OFFSET;
-    // pos_2P_selector_btn_left.y = pos_1P_selector_btn_left.y;
-    // pos_2P_selector_btn_right.x = getwidth() / 2 + OFFSET;
-    // pos_2P_selector_btn_right.y = pos_1P_selector_btn_right.y;
+    pos_animation_1P.x = pos_img_1P.x;
+    pos_animation_1P.y = pos_img_1P_gravestone.y - 60;
+    pos_animation_2P.x = pos_img_2P.x;
+    pos_animation_2P.y = pos_animation_1P.y;
+    pos_img_1P_name.x = pos_img_1P.x;
+    pos_img_1P_name.y = pos_animation_1P.y + 107;
+    pos_img_2P_name.x = pos_img_2P.x;
+    pos_img_2P_name.y = pos_img_1P_name.y;
+    pos_1P_selector_btn_left.x = pos_img_1P.x - 151;
+    pos_1P_selector_btn_left.y = pos_img_1P_gravestone.y;
+    pos_1P_selector_btn_right.x = pos_img_1P.x + 151;
+    pos_1P_selector_btn_right.y = pos_1P_selector_btn_left.y;
+    pos_2P_selector_btn_left.x = pos_img_2P.x - 151;
+    pos_2P_selector_btn_left.y = pos_1P_selector_btn_left.y;
+    pos_2P_selector_btn_right.x = pos_img_2P.x + 151;
+    pos_2P_selector_btn_right.y = pos_1P_selector_btn_left.y;
 }
 
 void SelectorScene::OnUpdate(float delta) {
-    std::cout << "选择界面运行中……" << delta << std::endl;
+    animation_peashooter_.OnUpdate(delta);
+    animation_sunflower_.OnUpdate(delta);
+
+    selector_background_scroll_offset_ = (selector_background_scroll_offset_ + 5) % SCROLL_WIDTH;
 }
 
 void SelectorScene::OnDraw() const {
+
+    // 滚动背景选择
+    const IMAGE *img_p1_selector_background = nullptr, *img_p2_selector_background = nullptr;
+    switch(player1_type_) {
+        case PlayerType::Peashooter:
+            img_p2_selector_background = GetResourceManager().GetImage("img_peashooter_selector_background_left");
+            break;
+        case PlayerType::Sunflower:
+            img_p2_selector_background = GetResourceManager().GetImage("img_sunflower_selector_background_left");
+            break;
+        default:
+            break;
+    }
+    switch(player2_type_) {
+        case PlayerType::Peashooter:
+            img_p1_selector_background = GetResourceManager().GetImage("img_peashooter_selector_background_right");
+            break;
+        case PlayerType::Sunflower:
+            img_p1_selector_background = GetResourceManager().GetImage("img_sunflower_selector_background_right");
+            break;
+        default:
+            break;
+    }
+
     putimage(0, 0, GetResourceManager().GetImage("img_selector_background"));
+
+    // 绘制滚动背景
+    putimage_alpha(selector_background_scroll_offset_ - SCROLL_WIDTH, 0, img_p1_selector_background);
+    putimage_alpha(selector_background_scroll_offset_, 0, SCROLL_WIDTH - selector_background_scroll_offset_, 0, img_p1_selector_background, 0, 0);
+    putimage_alpha(getwidth() - selector_background_scroll_offset_, 0, img_p2_selector_background);
+    putimage_alpha(getwidth() - SCROLL_WIDTH , 0, SCROLL_WIDTH - selector_background_scroll_offset_, 0, img_p2_selector_background, selector_background_scroll_offset_, 0);
 
     putimage_alpha_center(pos_img_VS.x, pos_img_VS.y, GetResourceManager().GetImage("img_VS"));
 
@@ -79,6 +117,37 @@ void SelectorScene::OnDraw() const {
     putimage_alpha_center(pos_img_1P_gravestone.x, pos_img_1P_gravestone.y, GetResourceManager().GetImage("img_gravestone_right"));
     putimage_alpha_center(pos_img_2P_gravestone.x, pos_img_2P_gravestone.y, GetResourceManager().GetImage("img_gravestone_left"));
 
+    switch(player1_type_) {
+        case PlayerType::Peashooter:
+            animation_peashooter_.OnDraw(pos_animation_1P.x, pos_animation_1P.y);
+            outtext_shaded(pos_img_1P_name.x - 56, pos_img_1P_name.y, "豌豆射手");
+            break;
+        case PlayerType::Sunflower:
+            animation_sunflower_.OnDraw(pos_animation_1P.x, pos_animation_1P.y);
+            outtext_shaded(pos_img_1P_name.x - 42, pos_img_1P_name.y, "向日葵");
+            break;
+        default:
+            break;
+    }
+
+    switch(player2_type_) {
+        case PlayerType::Peashooter:
+            animation_peashooter_.OnDraw(pos_animation_2P.x, pos_animation_2P.y);
+            outtext_shaded(pos_img_2P_name.x - 56, pos_img_2P_name.y, "豌豆射手");
+            break;
+        case PlayerType::Sunflower:
+            animation_sunflower_.OnDraw(pos_animation_2P.x, pos_animation_2P.y);
+            outtext_shaded(pos_img_2P_name.x - 42, pos_img_2P_name.y, "向日葵");
+            break;
+        default:
+            break;
+    }
+
+    putimage_alpha_center(pos_1P_selector_btn_left.x, pos_1P_selector_btn_left.y, GetResourceManager().GetImage(is_btn_1P_left_down_ ? "img_1P_selector_btn_down_left" : "img_1P_selector_btn_idle_left"));
+    putimage_alpha_center(pos_1P_selector_btn_right.x, pos_1P_selector_btn_right.y, GetResourceManager().GetImage(is_btn_1P_right_down_ ? "img_1P_selector_btn_down_right" : "img_1P_selector_btn_idle_right"));
+    putimage_alpha_center(pos_2P_selector_btn_left.x, pos_2P_selector_btn_left.y, GetResourceManager().GetImage(is_btn_2P_left_down_ ? "img_2P_selector_btn_down_left" : "img_2P_selector_btn_idle_left"));
+    putimage_alpha_center(pos_2P_selector_btn_right.x, pos_2P_selector_btn_right.y, GetResourceManager().GetImage(is_btn_2P_right_down_ ? "img_2P_selector_btn_down_right" : "img_2P_selector_btn_idle_right"));
+
     putimage_alpha_center(pos_img_1P_desc.x, pos_img_1P_desc.y, GetResourceManager().GetImage("img_1P_desc"));
     putimage_alpha_center(pos_img_2P_desc.x, pos_img_2P_desc.y, GetResourceManager().GetImage("img_2P_desc"));
     
@@ -86,8 +155,58 @@ void SelectorScene::OnDraw() const {
 }
 
 void SelectorScene::OnEvent(const ExMessage& msg) {
-    if(msg.message == WM_KEYUP) {
-        if(change_scene_callback_) change_scene_callback_(SceneType::Game);
+    switch(msg.message) {
+        case WM_KEYDOWN:
+            switch(msg.vkcode) {
+                case 'A':
+                    is_btn_1P_left_down_ = true;
+                    break;
+                case 'D':
+                    is_btn_1P_right_down_ = true;
+                    break;
+                case VK_LEFT:
+                    is_btn_2P_left_down_ = true;
+                    break;
+                case VK_RIGHT:
+                    is_btn_2P_right_down_ = true;
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case WM_KEYUP:
+            switch(msg.vkcode) {
+                case 'A':
+                    is_btn_1P_left_down_ = false;
+                    player1_type_ = static_cast<PlayerType>((static_cast<int>(PlayerType::Invalid) + static_cast<int>(player1_type_) - 1) % static_cast<int>(PlayerType::Invalid));
+                    GetResourceManager().SoundPlay("ui_switch");
+                    break;
+                case 'D':
+                    is_btn_1P_right_down_ = false;
+                    player1_type_ = static_cast<PlayerType>((static_cast<int>(player1_type_) + 1) % static_cast<int>(PlayerType::Invalid));
+                    GetResourceManager().SoundPlay("ui_switch");
+                    break;
+                case VK_LEFT:
+                    is_btn_2P_left_down_ = false;
+                    player2_type_ = static_cast<PlayerType>((static_cast<int>(PlayerType::Invalid) + static_cast<int>(player2_type_) - 1) % static_cast<int>(PlayerType::Invalid));
+                    GetResourceManager().SoundPlay("ui_switch");
+                    break;
+                case VK_RIGHT:
+                    is_btn_2P_right_down_ = false;
+                    player2_type_ = static_cast<PlayerType>((static_cast<int>(player2_type_) + 1) % static_cast<int>(PlayerType::Invalid));
+                    GetResourceManager().SoundPlay("ui_switch");
+                    break;
+                case VK_RETURN:
+                case VK_SPACE:
+                    GetResourceManager().SoundPlay("ui_confirm");
+                    if(change_scene_callback_) change_scene_callback_(SceneType::Game);
+                    break;
+                default:
+                    break;
+            }
+            break;
+        default:
+            break;
     }
 }
 

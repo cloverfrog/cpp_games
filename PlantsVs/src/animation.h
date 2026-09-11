@@ -5,6 +5,7 @@
 
 #include <graphics.h>
 
+#include "core//types.h"
 #include "utils/graphics_util.h"
 #include "atlas.h"
 
@@ -15,10 +16,13 @@ public:
     ~Animation() = default;
 
     void Reset() { timer_ = 0; idx_frame_ = 0; }
-    void Init(const Atlas* atlas, float interval, bool is_loop=true, std::function<void()> callback=nullptr) { atlas_ = atlas; interval_ = interval; is_loop_ = is_loop; callback_ = callback; }
+    void Init(const Atlas* atlas, float interval, bool is_loop=true, std::function<void()> callback=nullptr)
+    { atlas_ = atlas; interval_ = interval; is_loop_ = is_loop; callback_ = callback; }
 
     void OnUpdate(float delta);
     void OnDraw(int x, int y) const { putimage_alpha_center(x, y, atlas_->GetImage(idx_frame_)); }
+    void OnDraw(Vector2& pos) const 
+    { putimage_alpha_center(static_cast<int>(pos.x), static_cast<int>(pos.y), atlas_->GetImage(idx_frame_)); }
 
     size_t GetIdxFrame() const { return idx_frame_; }
     const IMAGE* GetImage() const { return atlas_->GetImage(idx_frame_); }

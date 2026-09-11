@@ -20,6 +20,9 @@ int main() {
     bool running = true;
 	
     /*==========初始化=========*/
+    settextstyle(28, 0, _T("resources/IPix"));
+    setbkmode(TRANSPARENT);
+
     PlantsVs::GetResourceManager().LoadResouces();
     PlantsVs::SceneManager scene_manager;
     /*==========初始化=========*/

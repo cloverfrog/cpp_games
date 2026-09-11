@@ -16,7 +16,7 @@ void GameScene::OnDraw() const {
 }
 
 void GameScene::OnEvent(const ExMessage& msg) {
-    if(msg.message == WM_KEYDOWN) {
+    if(msg.message == WM_KEYUP) {
         if(change_scene_callback_) change_scene_callback_(SceneType::Menu);
     }
 }
