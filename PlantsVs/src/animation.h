@@ -20,9 +20,9 @@ public:
     { atlas_ = atlas; interval_ = interval; is_loop_ = is_loop; callback_ = callback; }
 
     void OnUpdate(float delta);
-    void OnDraw(int x, int y) const { putimage_alpha_center(x, y, atlas_->GetImage(idx_frame_)); }
+    void OnDraw(int x, int y) const { putimage_alpha_center(atlas_->GetImage(idx_frame_),x, y); }
     void OnDraw(Vector2& pos) const 
-    { putimage_alpha_center(static_cast<int>(pos.x), static_cast<int>(pos.y), atlas_->GetImage(idx_frame_)); }
+    { putimage_alpha_center(atlas_->GetImage(idx_frame_), static_cast<int>(pos.x), static_cast<int>(pos.y)); }
 
     size_t GetIdxFrame() const { return idx_frame_; }
     const IMAGE* GetImage() const { return atlas_->GetImage(idx_frame_); }

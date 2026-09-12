@@ -22,6 +22,7 @@ add_executable(PlantsVs
     src/atlas.cpp
     src/animation.cpp
     src/resource_manager.cpp
+    src/platform.cpp
     src/scene/menu_scene.cpp
     src/scene/game_scene.cpp
     src/scene/selector_scene.cpp

@@ -105,17 +105,17 @@ void SelectorScene::OnDraw() const {
     putimage(0, 0, GetResourceManager().GetImage("img_selector_background"));
 
     // »æÖÆ¹ö¶¯±³¾°
-    putimage_alpha(selector_background_scroll_offset_ - SCROLL_WIDTH, 0, img_p1_selector_background);
-    putimage_alpha(selector_background_scroll_offset_, 0, SCROLL_WIDTH - selector_background_scroll_offset_, 0, img_p1_selector_background, 0, 0);
-    putimage_alpha(getwidth() - selector_background_scroll_offset_, 0, img_p2_selector_background);
-    putimage_alpha(getwidth() - SCROLL_WIDTH , 0, SCROLL_WIDTH - selector_background_scroll_offset_, 0, img_p2_selector_background, selector_background_scroll_offset_, 0);
+    putimage_alpha(img_p1_selector_background, selector_background_scroll_offset_ - SCROLL_WIDTH, 0, 0, 0, SCROLL_WIDTH - selector_background_scroll_offset_, 0);
+    putimage_alpha(img_p1_selector_background, selector_background_scroll_offset_, 0, 0, 0, SCROLL_WIDTH - selector_background_scroll_offset_, 0);
+    putimage_alpha(img_p2_selector_background, getwidth() - selector_background_scroll_offset_, 0, 0, 0, SCROLL_WIDTH - selector_background_scroll_offset_, 0);
+    putimage_alpha(img_p2_selector_background, getwidth() - SCROLL_WIDTH , 0, selector_background_scroll_offset_, 0, SCROLL_WIDTH - selector_background_scroll_offset_, 0);
 
-    putimage_alpha_center(pos_img_VS.x, pos_img_VS.y, GetResourceManager().GetImage("img_VS"));
+    putimage_alpha_center(GetResourceManager().GetImage("img_VS"), pos_img_VS.x, pos_img_VS.y);
 
-    putimage_alpha_center(pos_img_1P.x, pos_img_1P.y, GetResourceManager().GetImage("img_1P"));
-    putimage_alpha_center(pos_img_2P.x, pos_img_2P.y, GetResourceManager().GetImage("img_2P"));
-    putimage_alpha_center(pos_img_1P_gravestone.x, pos_img_1P_gravestone.y, GetResourceManager().GetImage("img_gravestone_right"));
-    putimage_alpha_center(pos_img_2P_gravestone.x, pos_img_2P_gravestone.y, GetResourceManager().GetImage("img_gravestone_left"));
+    putimage_alpha_center(GetResourceManager().GetImage("img_1P"), pos_img_1P.x, pos_img_1P.y);
+    putimage_alpha_center(GetResourceManager().GetImage("img_2P"), pos_img_2P.x, pos_img_2P.y);
+    putimage_alpha_center(GetResourceManager().GetImage("img_gravestone_right"), pos_img_1P_gravestone.x, pos_img_1P_gravestone.y);
+    putimage_alpha_center(GetResourceManager().GetImage("img_gravestone_left"), pos_img_2P_gravestone.x, pos_img_2P_gravestone.y);
 
     switch(player1_type_) {
         case PlayerType::Peashooter:
@@ -143,15 +143,15 @@ void SelectorScene::OnDraw() const {
             break;
     }
 
-    putimage_alpha_center(pos_1P_selector_btn_left.x, pos_1P_selector_btn_left.y, GetResourceManager().GetImage(is_btn_1P_left_down_ ? "img_1P_selector_btn_down_left" : "img_1P_selector_btn_idle_left"));
-    putimage_alpha_center(pos_1P_selector_btn_right.x, pos_1P_selector_btn_right.y, GetResourceManager().GetImage(is_btn_1P_right_down_ ? "img_1P_selector_btn_down_right" : "img_1P_selector_btn_idle_right"));
-    putimage_alpha_center(pos_2P_selector_btn_left.x, pos_2P_selector_btn_left.y, GetResourceManager().GetImage(is_btn_2P_left_down_ ? "img_2P_selector_btn_down_left" : "img_2P_selector_btn_idle_left"));
-    putimage_alpha_center(pos_2P_selector_btn_right.x, pos_2P_selector_btn_right.y, GetResourceManager().GetImage(is_btn_2P_right_down_ ? "img_2P_selector_btn_down_right" : "img_2P_selector_btn_idle_right"));
+    putimage_alpha_center(GetResourceManager().GetImage(is_btn_1P_left_down_ ? "img_1P_selector_btn_down_left" : "img_1P_selector_btn_idle_left"), pos_1P_selector_btn_left.x, pos_1P_selector_btn_left.y);
+    putimage_alpha_center(GetResourceManager().GetImage(is_btn_1P_right_down_ ? "img_1P_selector_btn_down_right" : "img_1P_selector_btn_idle_right"), pos_1P_selector_btn_right.x, pos_1P_selector_btn_right.y);
+    putimage_alpha_center(GetResourceManager().GetImage(is_btn_2P_left_down_ ? "img_2P_selector_btn_down_left" : "img_2P_selector_btn_idle_left"), pos_2P_selector_btn_left.x, pos_2P_selector_btn_left.y);
+    putimage_alpha_center(GetResourceManager().GetImage(is_btn_2P_right_down_ ? "img_2P_selector_btn_down_right" : "img_2P_selector_btn_idle_right"), pos_2P_selector_btn_right.x, pos_2P_selector_btn_right.y);
 
-    putimage_alpha_center(pos_img_1P_desc.x, pos_img_1P_desc.y, GetResourceManager().GetImage("img_1P_desc"));
-    putimage_alpha_center(pos_img_2P_desc.x, pos_img_2P_desc.y, GetResourceManager().GetImage("img_2P_desc"));
+    putimage_alpha_center(GetResourceManager().GetImage("img_1P_desc"), pos_img_1P_desc.x, pos_img_1P_desc.y);
+    putimage_alpha_center(GetResourceManager().GetImage("img_2P_desc"), pos_img_2P_desc.x, pos_img_2P_desc.y);
     
-    putimage_alpha_center(pos_img_tip.x, pos_img_tip.y, GetResourceManager().GetImage("img_selector_tip"));
+    putimage_alpha_center(GetResourceManager().GetImage("img_selector_tip"), pos_img_tip.x, pos_img_tip.y);
 }
 
 void SelectorScene::OnEvent(const ExMessage& msg) {

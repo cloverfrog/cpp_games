@@ -4,6 +4,7 @@
 #include <graphics.h>
 
 #include "scene/scene.h"
+#include "platform.h"
 
 namespace PlantsVs {
 class GameScene final: public Scene {
@@ -16,6 +17,10 @@ public:
     void OnDraw() const override;
     void OnEvent(const ExMessage& msg) override;
     void OnExit() override;
+private:
+    std::vector<Platform> platform_list_;
+
+    bool is_debug_ = false; // 是否开启调试模式
 };
 }
 

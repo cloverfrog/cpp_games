@@ -26,6 +26,8 @@ struct Vector2 {
         return Vector2(x / length, y / length);
     }
 };
+
+typedef Vector2 Point2D;
 }
 
 #endif // CORE_TYPES_H
