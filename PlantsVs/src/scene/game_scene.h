@@ -5,6 +5,7 @@
 
 #include "scene/scene.h"
 #include "platform.h"
+#include "player/player_manager.h"
 
 namespace PlantsVs {
 class GameScene final: public Scene {
@@ -19,6 +20,7 @@ public:
     void OnExit() override;
 private:
     std::vector<Platform> platform_list_;
+    PlayerManager& player_manager_ = PlayerManager::GetInstance();
 
     bool is_debug_ = false; // 是否开启调试模式
 };

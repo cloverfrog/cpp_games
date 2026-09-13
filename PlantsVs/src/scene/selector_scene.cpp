@@ -1,9 +1,10 @@
 #include "scene/selector_scene.h"
 
-#include <iostream>
-
 #include "utils/graphics_util.h"
 #include "resource_manager.h"
+#include "player/peashooter_player.h"
+#include "player/sunflower_player.h"
+#include "player/player_manager.h"
 
 namespace PlantsVs {
 namespace {
@@ -120,11 +121,11 @@ void SelectorScene::OnDraw() const {
     switch(player1_type_) {
         case PlayerType::Peashooter:
             animation_peashooter_.OnDraw(pos_animation_1P.x, pos_animation_1P.y);
-            outtext_shaded(pos_img_1P_name.x - 56, pos_img_1P_name.y, "豌豆射手");
+            outtext_shaded(pos_img_1P_name.x - 56, pos_img_1P_name.y, "婉逗射手");
             break;
         case PlayerType::Sunflower:
             animation_sunflower_.OnDraw(pos_animation_1P.x, pos_animation_1P.y);
-            outtext_shaded(pos_img_1P_name.x - 42, pos_img_1P_name.y, "向日葵");
+            outtext_shaded(pos_img_1P_name.x - 42, pos_img_1P_name.y, "龙日葵");
             break;
         default:
             break;
@@ -133,11 +134,11 @@ void SelectorScene::OnDraw() const {
     switch(player2_type_) {
         case PlayerType::Peashooter:
             animation_peashooter_.OnDraw(pos_animation_2P.x, pos_animation_2P.y);
-            outtext_shaded(pos_img_2P_name.x - 56, pos_img_2P_name.y, "豌豆射手");
+            outtext_shaded(pos_img_2P_name.x - 56, pos_img_2P_name.y, "婉逗射手");
             break;
         case PlayerType::Sunflower:
             animation_sunflower_.OnDraw(pos_animation_2P.x, pos_animation_2P.y);
-            outtext_shaded(pos_img_2P_name.x - 42, pos_img_2P_name.y, "向日葵");
+            outtext_shaded(pos_img_2P_name.x - 42, pos_img_2P_name.y, "龙日葵");
             break;
         default:
             break;
@@ -211,6 +212,26 @@ void SelectorScene::OnEvent(const ExMessage& msg) {
 }
 
 void SelectorScene::OnExit() {
-    std::cout << "退出选择界面" << std::endl;
+    switch(player1_type_) {
+        case PlayerType::Peashooter:
+            PlayerManager::GetInstance().SetPlayer1(std::make_unique<PeashooterPlayer>());
+            break;
+        case PlayerType::Sunflower:
+            PlayerManager::GetInstance().SetPlayer1(std::make_unique<SunflowerPlayer>());
+            break;
+        default:
+            break;
+    }
+
+    switch(player2_type_) {
+        case PlayerType::Peashooter:
+            PlayerManager::GetInstance().SetPlayer2(std::make_unique<PeashooterPlayer>());
+            break;
+        case PlayerType::Sunflower:
+            PlayerManager::GetInstance().SetPlayer2(std::make_unique<SunflowerPlayer>());
+            break;
+        default:
+            break;
+    }
 }
 }

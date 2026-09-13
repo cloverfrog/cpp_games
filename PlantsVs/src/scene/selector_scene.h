@@ -19,8 +19,8 @@ public:
     void OnExit() override;
 
 private:
-    enum class PlayerType {
-        Peashooter,
+    enum class PlayerType : int {
+        Peashooter = 0,
         Sunflower,
         Invalid
     };

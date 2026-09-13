@@ -15,10 +15,13 @@ void GameScene::OnEnter() {
     platform_list_.emplace_back(PlatformSmall({299.f, 380.f}));
     platform_list_.emplace_back(PlatformSmall({979.f, 380.f}));
     platform_list_.emplace_back(PlatformSmall({639.f, 245.f}));
+
+    player_manager_.SetPosition(PlayerId::P1, {248.f, 98.f});
+    player_manager_.SetPosition(PlayerId::P2, {1023.f, 98.f});
 }
 
 void GameScene::OnUpdate(float delta) {
-    
+    player_manager_.OnUpdate(delta);
 }
 
 void GameScene::OnDraw() const {
@@ -36,6 +39,8 @@ void GameScene::OnDraw() const {
                  static_cast<int>(platform.GetCollisionShape().right - pos_camera.x), static_cast<int>(platform.GetCollisionShape().y - pos_camera.y));
         }
     }
+
+    player_manager_.OnDraw();
 
     if(is_debug_) {
         settextcolor(RGB(255, 0, 0));
@@ -65,6 +70,8 @@ void GameScene::OnEvent(const ExMessage& msg) {
         default:
             break;
     }
+
+    player_manager_.OnEvent(msg);
 }
 
 void GameScene::OnExit() {

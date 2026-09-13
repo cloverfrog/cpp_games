@@ -15,11 +15,11 @@ public:
 
     void SetChangeSceneCallback(std::function<void(SceneType)> callback) { change_scene_callback_ = callback; }
 
-    virtual void OnEnter() {}
-    virtual void OnUpdate(float /*delta*/) {}
-    virtual void OnDraw() const{}
-    virtual void OnEvent(const ExMessage& /*msg*/) {}
-    virtual void OnExit() {}
+    virtual void OnEnter() = 0;
+    virtual void OnUpdate(float /*delta*/) = 0;
+    virtual void OnDraw() const = 0;
+    virtual void OnEvent(const ExMessage& /*msg*/) = 0;
+    virtual void OnExit() = 0;
 protected:
     std::function<void(SceneType)> change_scene_callback_ = nullptr;
 };

@@ -27,6 +27,10 @@ add_executable(PlantsVs
     src/scene/game_scene.cpp
     src/scene/selector_scene.cpp
     src/scene_manager.cpp
+    src/player/player.cpp
+    src/player/player_manager.cpp
+    src/player/peashooter_player.cpp
+    src/player/sunflower_player.cpp
 )
 
 target_link_libraries(PlantsVs 
